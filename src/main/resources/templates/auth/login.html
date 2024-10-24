@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Login | DashLite admin Template</title>
+    <link rel="stylesheet" th:href="@{/admin/css/dashlite.css}">
+    <link id="skin-default" rel="stylesheet" th:href="@{/admin/css/theme.css}">
+</head>
+
+<body class="nk-body bg-white npc-default pg-auth">
+    <div class="nk-app-root">
+        <!-- ... (previous content remains unchanged) ... -->
+
+        <div class="nk-block nk-block-middle nk-auth-body">
+            <div class="brand-logo pb-5">
+                <a href="/" class="logo-link">
+                    <img class="logo-light logo-img logo-img-lg" th:src="@{/admin/images/logo.png}" alt="logo">
+                    <img class="logo-dark logo-img logo-img-lg" th:src="@{/admin/images/logo-dark.png}" alt="logo-dark">
+                </a>
+            </div>
+            <div class="nk-block-head">
+                <div class="nk-block-head-content">
+                    <h5 class="nk-block-title">Sign-In</h5>
+                    <div class="nk-block-des">
+                        <p>Access the DashLite panel using your email and passcode.</p>
+
+                        <div th:if="${error}">
+                            <div class="alert alert-danger" ><p th:text="${error}"></p></div>
+                        </div>
+                        <div th:if="${param.logout}">
+                            <div class="alert alert-success"> You have been logged out.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form method="post" th:action="@{/login}" class="form-validate is-alter" role="form">
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label class="form-label" for="email">Email</label>
+                    </div>
+                    <div class="form-control-wrap">
+                        <input type="text" class="form-control form-control-lg" id="email" name="email"
+                            placeholder="Enter your email address" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label class="form-label" for="password">Password</label>
+                    </div>
+                    <div class="form-control-wrap">
+                        <a href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
+                            <em class="passcode-icon icon-show icon ni ni-eye"></em>
+                            <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
+                        </a>
+                        <input type="password" class="form-control form-control-lg" id="password" name="password"
+                            placeholder="Enter your password" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Sign in</button>
+                </div>
+            </form>
+
+            <div class="form-note-s2 pt-4">
+                New on our platform? <a th:href="@{/register}">Create an account</a>
+            </div>
+
+            <!-- ... (rest of the content remains unchanged) ... -->
+        </div>
+
+        <!-- ... (footer content remains unchanged) ... -->
+    </div>
+
+    <script th:src="@{/admin/js/bundle.js}"></script>
+    <script th:src="@{/admin/js/scripts.js}"></script>
+    <script th:src="@{/admin/js/demo-settings.js}"></script>
+
+    <!-- ... (modal content remains unchanged) ... -->
+</body>
+
+</html>

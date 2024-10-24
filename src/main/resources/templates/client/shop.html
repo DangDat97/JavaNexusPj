@@ -1,0 +1,58 @@
+<section class="ls s-py-80 s-py-lg-120 s-py-xl-160">
+    <div class="container">
+        <div class="row">
+            <main class="col-lg-8 col-xl-9 order-lg-2">
+                <div class="columns-3">
+
+                    <ul class="products">
+                        <!-- Changed @foreach to th:each -->
+                        <li th:each="item : ${model}" class="product vertical-item padding-small content-padding">
+                            <div class="product-inner hero-bg rounded">
+                                <!-- Changed asp-controller, asp-action, asp-route-id to th:href -->
+                                <a class="link-scale" th:href="@{/home/product/{id}(id=${item.id})}">
+                                    <span class="onsale small-text">Sale!</span>
+                                    <!-- Changed Url.Content to th:src -->
+                                    <img th:src="@{'/admin/images/' + ${item.avatarImages}}" alt=""
+                                        style="max-height: 268px; width:268px; object-fit: cover;">
+                                </a>
+                                <div class="item-content">
+                                    <!-- Changed @item.Name to th:text -->
+                                    <h2 th:text="${item.name}"></h2>
+                                    <div class="star-rating">
+                                        <span style="width:80%">
+                                            Rated <strong class="rating">4.00</strong>
+                                            out of 5
+                                        </span>
+                                    </div>
+                                    <span class="price">
+                                        <span>$</span><span th:text="${item.price}"></span>
+                                    </span>
+                                    <!-- Changed asp-action, asp-controller, asp-route-id to th:href -->
+                                    <a rel="nofollow" th:href="@{/home/addToCart/{id}(id=${item.id})}"
+                                        class="btn btn-maincolor small-btn product_type_simple add_to_cart_button">
+                                        <span>
+                                            Add
+                                            to cart
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- columns 2 -->
+
+                <nav class="woocommerce-pagination">
+                    <ul class="page-numbers">
+                        <!-- Replaced @Html.PagedListPager with Thymeleaf pagination -->
+                        <li th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
+                            <a th:href="@{/shop(page=${pageNumber})}" th:text="${pageNumber}"></a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </main>
+            <!-- ... rest of the code remains unchanged ... -->
+        </div>
+    </div>
+</section>

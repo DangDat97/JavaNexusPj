@@ -1,0 +1,536 @@
+<section class="ls s-py-80 s-py-lg-120 s-py-xl-160 shop-cart">
+        <div class="container">
+            <div class="row">
+                <main class="col-lg-12">
+                    <div class="woocommerce-message">
+                        "Premium quality" removed. <a href="#">Undo?</a>
+                    </div>
+
+                    <form class="woocommerce-cart-form" action="/" method="post">
+
+                        <table class="shop_table shop_table_responsive cart">
+                            <thead>
+                                <tr>
+                                    <th class="product-remove">&nbsp;</th>
+                                    <th class="product-thumbnail">&nbsp;</th>
+                                    <th class="product-name">Product</th>
+                                    <th class="product-price">Price</th>
+                                    <th class="product-quantity product">Quantity</th>
+                                    <th class="product-subtotal">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model) {
+                                <tr class="cart_item">
+
+                                    <td class="product-remove">
+                                        <a asp-action="RemoveItem" class="remove" aria-label="Remove this item"
+                                            asp-route-id="@item.Id" data-product_sku="">×</a>
+                                    </td>
+
+                                    <td class="product-thumbnail">
+                                        <a href="shop-product-right.html">
+                                            <img width="180" height="180" src="@Url.Content(" ~/admin/images/" +
+                                                item.Product.AvatarImages)" class="" alt="">
+                                        </a>
+                                    </td>
+
+                                    <td class="product-name" data-title="Product">
+                                        <a href="shop-product-right.html">Premium Quality</a>
+                                    </td>
+
+                                    <td class="product-price" data-title="Price">
+                                        <span class="amount">
+                                            <span>$</span>@item.Product.Price
+                                        </span>
+                                    </td>
+
+                                    <td class="product-quantity product" data-title="Quantity">
+                                        <div class="quantity">
+                                            <input type="button" value="+" class="plus">
+                                            <i class="fa fa-angle-up" aria-hidden="true"></i>
+                                            <input type="number" class="input-text qty text" step="1" min="1" max="1000"
+                                                name="quantity" value="@item.Quantity" title="Qty" size="4">
+                                            <input type="button" value="-" class="minus">
+                                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                        </div>
+                                    </td>
+
+                                    <td class="product-subtotal" data-title="Total">
+                                        <span class="amount">
+                                            <span>$</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                }
+
+                                <tr>
+                                    <td colspan="6" class="actions">
+
+                                        <div class="coupon">
+                                            <label for="coupon_code">Coupon:</label>
+                                            <input type="text" name="coupon_code" class="input-text" id="coupon_code"
+                                                value="" placeholder="Coupon code">
+                                            <button type="submit" class="btn btn-maincolor"
+                                                name="apply_coupon"><span>Apply coupon</span></button>
+                                        </div>
+                                        <button type="submit" class="btn btn-outline-maincolor"
+                                            name="update_cart"><span>Update cart</span></button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </form>
+
+                    <div class="cart-collaterals">
+
+                        <div class="cross-sells">
+
+                            <h5>You may be interested in…</h5>
+
+                            <ul class="products owl-carousel top-right-nav owl-loaded owl-drag">
+
+
+
+
+
+
+
+
+
+
+
+                                <div class="owl-stage-outer">
+                                    <div class="owl-stage"
+                                        style="transform: translate3d(-2800px, 0px, 0px); transition: all 0.25s ease 0s; width: 6400px;">
+                                        <div class="owl-item cloned" style="width: 370px; margin-right: 30px;">
+                                            <li class="product vertical-item padding-small content-padding">
+                                                <div class="product-inner hero-bg rounded">
+                                                    <a class="link-scale" href="shop-product-@@type.html">
+                                                        <img src="images/shop/05.jpg" alt="">
+                                                    </a>
+                                                    <div class="item-content">
+                                                        <h2>Server Unit 05</h2>
+                                                        <div class="star-rating">
+                                                            <span style="width:80%">Rated <strong
+                                                                    class="rating">4.00</strong> out of 5</span>
+                                                        </div>
+                                                        <span class="price">
+                                                            <span>$</span>140.00
+                                                        </span>
+                                                        <a rel="nofollow" href="shop-cart.html"
+                                                            class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                                                to cart</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item cloned" style="width: 370px; margin-right: 30px;">
+                                            <li class="product vertical-item padding-small content-padding">
+                                                <div class="product-inner hero-bg rounded">
+                                                    <a class="link-scale" href="shop-product-@@type.html">
+                                                        <img src="images/shop/06.jpg" alt="">
+                                                    </a>
+                                                    <div class="item-content">
+                                                        <h2>Path Switcher 701</h2>
+                                                        <div class="star-rating">
+                                                            <span style="width:80%">Rated <strong
+                                                                    class="rating">4.00</strong> out of 5</span>
+                                                        </div>
+                                                        <span class="price">
+                                                            <span>$</span>120.00
+                                                        </span>
+                                                        <a rel="nofollow" href="shop-cart.html"
+                                                            class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                                                to cart</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item cloned" style="width: 370px; margin-right: 30px;">
+                                            <li class="product vertical-item padding-small content-padding">
+                                                <div class="product-inner hero-bg rounded">
+                                                    <a class="link-scale" href="shop-product-@@type.html">
+                                                        <img src="images/shop/07.jpg" alt="">
+                                                    </a>
+                                                    <div class="item-content">
+                                                        <h2>Inter Power</h2>
+                                                        <div class="star-rating">
+                                                            <span style="width:80%">Rated <strong
+                                                                    class="rating">4.00</strong> out of 5</span>
+                                                        </div>
+                                                        <span class="price">
+
+                                                            <span>$</span>100.00
+                                                        </span>
+                                                        <a rel="nofollow" href="shop-cart.html"
+                                                            class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                                                to cart</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item cloned" style="width: 370px; margin-right: 30px;">
+                                            <li class="product vertical-item padding-small content-padding">
+                                                <div class="product-inner hero-bg rounded">
+                                                    <a class="link-scale" href="shop-product-@@type.html">
+                                                        <img src="images/shop/08.jpg" alt="">
+                                                    </a>
+                                                    <div class="item-content">
+                                                        <h2>NAS 0302</h2>
+                                                        <div class="star-rating">
+                                                            <span style="width:80%">Rated <strong
+                                                                    class="rating">4.00</strong> out of 5</span>
+                                                        </div>
+                                                        <span class="price">
+                                                            <span>$</span>120.00
+                                                        </span>
+                                                        <a rel="nofollow" href="shop-cart.html"
+                                                            class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                                                to cart</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item" style="width: 370px; margin-right: 30px;">
+                                            <li class="product vertical-item padding-small content-padding">
+                                                <div class="product-inner hero-bg rounded">
+                                                    <a class="link-scale" href="shop-product-@@type.html">
+                                                        <span class="onsale small-text">Sale!</span>
+                                                        <img src="images/shop/01.jpg" alt="">
+                                                    </a>
+                                                    <div class="item-content">
+                                                        <h2>SM Router 01</h2>
+                                                        <div class="star-rating">
+                                                            <span style="width:80%">Rated <strong
+                                                                    class="rating">4.00</strong> out of 5</span>
+                                                        </div>
+                                                        <span class="price">
+                                                            <del>
+                                                                <span>
+                                                                    <span>$</span>250.00
+                                                                </span>
+                                                            </del>
+                                                            <span>$</span>200.00
+                                                        </span>
+                                                        <a rel="nofollow" href="shop-cart.html"
+                                                            class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                                                to cart</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item" style="width: 370px; margin-right: 30px;">
+                                            <li class="product vertical-item padding-small content-padding">
+                                                <div class="product-inner hero-bg rounded">
+                                                    <a class="link-scale" href="shop-product-@@type.html">
+                                                        <span class="onsale small-text">New</span>
+                                                        <img src="images/shop/02.jpg" alt="">
+                                                    </a>
+                                                    <div class="item-content">
+                                                        <h2>Mobile Router 02</h2>
+                                                        <div class="star-rating">
+                                                            <span style="width:80%">Rated <strong
+                                                                    class="rating">4.00</strong> out of 5</span>
+                                                        </div>
+                                                        <span class="price">
+                                                            <span>$</span>200.00
+                                                        </span>
+                                                        <a rel="nofollow" href="shop-cart.html"
+                                                            class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                                                to cart</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item" style="width: 370px; margin-right: 30px;">
+                                            <li class="product vertical-item padding-small content-padding">
+                                                <div class="product-inner hero-bg rounded">
+                                                    <a class="link-scale" href="shop-product-@@type.html">
+                                                        <img src="images/shop/03.jpg" alt="">
+                                                    </a>
+                                                    <div class="item-content">
+                                                        <h2>Extender 0402</h2>
+                                                        <div class="star-rating">
+                                                            <span style="width:80%">Rated <strong
+                                                                    class="rating">4.00</strong> out of 5</span>
+                                                        </div>
+                                                        <span class="price">
+
+                                                            <span>$</span>180.00
+                                                        </span>
+                                                        <a rel="nofollow" href="shop-cart.html"
+                                                            class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                                                to cart</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item active" style="width: 370px; margin-right: 30px;">
+                                            <li class="product vertical-item padding-small content-padding">
+                                                <div class="product-inner hero-bg rounded">
+                                                    <a class="link-scale" href="shop-product-@@type.html">
+                                                        <img src="images/shop/04.jpg" alt="">
+                                                    </a>
+                                                    <div class="item-content">
+                                                        <h2>Switch Port 303</h2>
+                                                        <div class="star-rating">
+                                                            <span style="width:80%">Rated <strong
+                                                                    class="rating">4.00</strong> out of 5</span>
+                                                        </div>
+                                                        <span class="price">
+                                                            <span>$</span>160.00
+                                                        </span>
+                                                        <a rel="nofollow" href="shop-cart.html"
+                                                            class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                                                to cart</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item active" style="width: 370px; margin-right: 30px;">
+                                            <li class="product vertical-item padding-small content-padding">
+                                                <div class="product-inner hero-bg rounded">
+                                                    <a class="link-scale" href="shop-product-@@type.html">
+                                                        <img src="images/shop/05.jpg" alt="">
+                                                    </a>
+                                                    <div class="item-content">
+                                                        <h2>Server Unit 05</h2>
+                                                        <div class="star-rating">
+                                                            <span style="width:80%">Rated <strong
+                                                                    class="rating">4.00</strong> out of 5</span>
+                                                        </div>
+                                                        <span class="price">
+                                                            <span>$</span>140.00
+                                                        </span>
+                                                        <a rel="nofollow" href="shop-cart.html"
+                                                            class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                                                to cart</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item active" style="width: 370px; margin-right: 30px;">
+                                            <li class="product vertical-item padding-small content-padding">
+                                                <div class="product-inner hero-bg rounded">
+                                                    <a class="link-scale" href="shop-product-@@type.html">
+                                                        <img src="images/shop/06.jpg" alt="">
+                                                    </a>
+                                                    <div class="item-content">
+                                                        <h2>Path Switcher 701</h2>
+                                                        <div class="star-rating">
+                                                            <span style="width:80%">Rated <strong
+                                                                    class="rating">4.00</strong> out of 5</span>
+                                                        </div>
+                                                        <span class="price">
+                                                            <span>$</span>120.00
+                                                        </span>
+                                                        <a rel="nofollow" href="shop-cart.html"
+                                                            class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                                                to cart</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item" style="width: 370px; margin-right: 30px;">
+                                            <li class="product vertical-item padding-small content-padding">
+                                                <div class="product-inner hero-bg rounded">
+                                                    <a class="link-scale" href="shop-product-@@type.html">
+                                                        <img src="images/shop/07.jpg" alt="">
+                                                    </a>
+                                                    <div class="item-content">
+                                                        <h2>Inter Power</h2>
+                                                        <div class="star-rating">
+                                                            <span style="width:80%">Rated <strong
+                                                                    class="rating">4.00</strong> out of 5</span>
+                                                        </div>
+                                                        <span class="price">
+
+                                                            <span>$</span>100.00
+                                                        </span>
+                                                        <a rel="nofollow" href="shop-cart.html"
+                                                            class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                                                to cart</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item" style="width: 370px; margin-right: 30px;">
+                                            <li class="product vertical-item padding-small content-padding">
+                                                <div class="product-inner hero-bg rounded">
+                                                    <a class="link-scale" href="shop-product-@@type.html">
+                                                        <img src="images/shop/08.jpg" alt="">
+                                                    </a>
+                                                    <div class="item-content">
+                                                        <h2>NAS 0302</h2>
+                                                        <div class="star-rating">
+                                                            <span style="width:80%">Rated <strong
+                                                                    class="rating">4.00</strong> out of 5</span>
+                                                        </div>
+                                                        <span class="price">
+                                                            <span>$</span>120.00
+                                                        </span>
+                                                        <a rel="nofollow" href="shop-cart.html"
+                                                            class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                                                to cart</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item cloned" style="width: 370px; margin-right: 30px;">
+                                            <li class="product vertical-item padding-small content-padding">
+                                                <div class="product-inner hero-bg rounded">
+                                                    <a class="link-scale" href="shop-product-@@type.html">
+                                                        <span class="onsale small-text">Sale!</span>
+                                                        <img src="images/shop/01.jpg" alt="">
+                                                    </a>
+                                                    <div class="item-content">
+                                                        <h2>SM Router 01</h2>
+                                                        <div class="star-rating">
+                                                            <span style="width:80%">Rated <strong
+                                                                    class="rating">4.00</strong> out of 5</span>
+                                                        </div>
+                                                        <span class="price">
+                                                            <del>
+                                                                <span>
+                                                                    <span>$</span>250.00
+                                                                </span>
+                                                            </del>
+                                                            <span>$</span>200.00
+                                                        </span>
+                                                        <a rel="nofollow" href="shop-cart.html"
+                                                            class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                                                to cart</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item cloned" style="width: 370px; margin-right: 30px;">
+                                            <li class="product vertical-item padding-small content-padding">
+                                                <div class="product-inner hero-bg rounded">
+                                                    <a class="link-scale" href="shop-product-@@type.html">
+                                                        <span class="onsale small-text">New</span>
+                                                        <img src="images/shop/02.jpg" alt="">
+                                                    </a>
+                                                    <div class="item-content">
+                                                        <h2>Mobile Router 02</h2>
+                                                        <div class="star-rating">
+                                                            <span style="width:80%">Rated <strong
+                                                                    class="rating">4.00</strong> out of 5</span>
+                                                        </div>
+                                                        <span class="price">
+                                                            <span>$</span>200.00
+                                                        </span>
+                                                        <a rel="nofollow" href="shop-cart.html"
+                                                            class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                                                to cart</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item cloned" style="width: 370px; margin-right: 30px;">
+                                            <li class="product vertical-item padding-small content-padding">
+                                                <div class="product-inner hero-bg rounded">
+                                                    <a class="link-scale" href="shop-product-@@type.html">
+                                                        <img src="images/shop/03.jpg" alt="">
+                                                    </a>
+                                                    <div class="item-content">
+                                                        <h2>Extender 0402</h2>
+                                                        <div class="star-rating">
+                                                            <span style="width:80%">Rated <strong
+                                                                    class="rating">4.00</strong> out of 5</span>
+                                                        </div>
+                                                        <span class="price">
+
+                                                            <span>$</span>180.00
+                                                        </span>
+                                                        <a rel="nofollow" href="shop-cart.html"
+                                                            class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                                                to cart</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item cloned" style="width: 370px; margin-right: 30px;">
+                                            <li class="product vertical-item padding-small content-padding">
+                                                <div class="product-inner hero-bg rounded">
+                                                    <a class="link-scale" href="shop-product-@@type.html">
+                                                        <img src="images/shop/04.jpg" alt="">
+                                                    </a>
+                                                    <div class="item-content">
+                                                        <h2>Switch Port 303</h2>
+                                                        <div class="star-rating">
+                                                            <span style="width:80%">Rated <strong
+                                                                    class="rating">4.00</strong> out of 5</span>
+                                                        </div>
+                                                        <span class="price">
+                                                            <span>$</span>160.00
+                                                        </span>
+                                                        <a rel="nofollow" href="shop-cart.html"
+                                                            class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                                                to cart</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="owl-nav">
+                                    <div class="owl-prev"><i class="fa fa-angle-left"></i></div>
+                                    <div class="owl-next"><i class="fa fa-angle-right"></i></div>
+                                </div>
+                                <div class="owl-dots disabled"></div>
+                            </ul>
+
+                        </div>
+
+                        <div class="cart_totals ">
+
+
+                            <h5>Cart totals</h5>
+
+                            <table class="shop_table shop_table_responsive">
+
+                                <tbody>
+                                    <tr class="cart-subtotal">
+                                        <th>Subtotal</th>
+                                        <td data-title="Subtotal">
+                                            <span class="amount">
+                                                <span>$</span>45.00
+                                            </span>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr class="order-total">
+                                        <th>Total</th>
+                                        <td data-title="Total">
+                                            <strong>
+                                                <span class="amount">
+                                                    <span>$</span>45.00
+                                                </span>
+                                            </strong>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+
+                            <div class="wc-proceed-to-checkout">
+                                <a href="shop-checkout.html"
+                                    class="checkout-button alt wc-forward btn btn-maincolor"><span>Proceed to
+                                        checkout</span></a>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                </main>
+            </div>
+
+        </div>
+    </section>

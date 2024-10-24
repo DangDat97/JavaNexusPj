@@ -1,0 +1,157 @@
+
+
+<section class="ls s-pt-80 s-pb-70 s-py-lg-120 s-py-xl-160">
+    <div class="container">
+        <div class="row">
+            <main class="col-lg-12">
+                <article>
+                    <header class="entry-header mb-30">
+                        <h1 class="entry-title">Addresses</h1>
+                        <span class="edit-link">
+                            <a class="post-edit-link" href="#">
+                                Edit
+                                <span class="screen-reader-text">"My account"</span>
+                            </a>
+                        </span>
+                    </header>
+                    <!-- .entry-header -->
+                    <div class="entry-content">
+                        <div class="woocommerce">
+                            <nav class="woocommerce-MyAccount-navigation hero-bg p-60">
+                                <ul>
+                                    <li>
+                                        <a href="shop-account-dashboard.html">Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-account-orders.html">Orders</a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-account-downloads.html">Downloads</a>
+                                    </li>
+                                    <li class="is-active">
+                                        <a href="shop-account-addresses.html">Addresses</a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-account-details.html">Account details</a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-account-login.html">Logout</a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+
+                            <div class="woocommerce-MyAccount-content">
+                                <form>
+                                    <h6>Shipping address</h6>
+                                    <div class="woocommerce-address-fields">
+                                        <div class="woocommerce-address-fields__field-wrapper">
+                                            <p class="form-row form-row-first validate-required"
+                                                id="shipping_first_name_field" data-priority="10">
+                                                <label for="shipping_first_name" class="">
+                                                    First name
+                                                    <abbr class="required" title="required">*</abbr>
+                                                </label>
+                                                <input type="text" class="input-text form-control"
+                                                    name="shipping_first_name" id="shipping_first_name"
+                                                    placeholder="First name" value="" autocomplete="given-name"
+                                                    autofocus="autofocus">
+                                            </p>
+                                            <p class="form-row form-row-last validate-required"
+                                                id="shipping_last_name_field" data-priority="20">
+                                                <label for="shipping_last_name" class="">
+                                                    Last name
+                                                    <abbr class="required" title="required">*</abbr>
+                                                </label>
+                                                <input type="text" class="input-text form-control"
+                                                    name="shipping_last_name" id="shipping_last_name"
+                                                    placeholder="Last name" value="" autocomplete="family-name">
+                                            </p>
+                                            <p class="form-row form-row-wide" id="shipping_company_field"
+                                                data-priority="30">
+                                                <label for="shipping_company" class="">Company name</label>
+                                                <input type="text" class="input-text form-control"
+                                                    name="shipping_company" id="shipping_company"
+                                                    placeholder="Company name" value="" autocomplete="organization">
+                                            </p>
+                                            <p class="form-row form-row-wide address-field update_totals_on_change validate-required"
+                                                id="shipping_country_field" data-priority="40">
+                                                <label for="shipping_country" class="">
+                                                    Country
+                                                    <abbr class="required" title="required">*</abbr>
+                                                </label>
+
+                                            </p>
+                                            <p class="form-row form-row-wide address-field validate-required"
+                                                id="shipping_address_1_field" data-priority="50">
+                                                <label for="shipping_address_1" class="">
+                                                    Street address
+                                                    <abbr class="required" title="required">*</abbr>
+                                                </label>
+                                                <input type="text" class="input-text form-control"
+                                                    name="shipping_address_1" id="shipping_address_1"
+                                                    placeholder="House number and street name" value=""
+                                                    autocomplete="address-line1">
+                                            </p>
+                                            <p class="form-row form-row-wide address-field"
+                                                id="shipping_address_2_field" data-priority="60">
+                                                <input type="text" class="input-text form-control"
+                                                    name="shipping_address_2" id="shipping_address_2"
+                                                    placeholder="Apartment, suite, unit etc. (optional)" value=""
+                                                    autocomplete="address-line2">
+                                            </p>
+                                            <p class="form-row form-row-wide address-field validate-required"
+                                                id="shipping_city_field" data-priority="70"
+                                                data-o_class="form-row form-row-wide address-field validate-required">
+                                                <label for="shipping_city" class="">
+                                                    Town / City
+                                                    <abbr class="required" title="required">*</abbr>
+                                                </label>
+                                                <input type="text" class="input-text form-control" name="shipping_city"
+                                                    id="shipping_city" placeholder="Town / City" value=""
+                                                    autocomplete="address-level2">
+                                            </p>
+                                            <p class="form-row form-row-wide address-field validate-state validate-required"
+                                                id="shipping_state_field" data-priority="80"
+                                                data-o_class="form-row form-row-wide address-field validate-required validate-state">
+                                                <label for="shipping_state" class="">
+                                                    State / County
+                                                    <abbr class="required" title="required">*</abbr>
+                                                </label>
+                                                <input type="text" class="input-text form-control" value=""
+                                                    placeholder="State / County" name="shipping_state"
+                                                    id="shipping_state" autocomplete="address-level1">
+                                            </p>
+                                            <p class="form-row form-row-wide address-field validate-postcode validate-required"
+                                                id="shipping_postcode_field" data-priority="90"
+                                                data-o_class="form-row form-row-wide address-field validate-required validate-postcode">
+                                                <label for="shipping_postcode" class="">
+                                                    Postcode / ZIP
+                                                    <abbr class="required" title="required">*</abbr>
+                                                </label>
+                                                <input type="text" class="input-text form-control"
+                                                    name="shipping_postcode" id="shipping_postcode"
+                                                    placeholder="Postcode / ZIP" value="" autocomplete="postal-code">
+                                            </p>
+                                        </div>
+
+                                        <div class="divider-60 d-none d-lg-block"></div>
+                                        <p>
+                                            <button type="submit" class="woocommerce-Button btn btn-maincolor"
+                                                name="save_address"><span>Save address</span></button>
+                                        </p>
+                                    </div>
+
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .entry-content -->
+                </article>
+
+            </main>
+        </div>
+    </div>
+</section>

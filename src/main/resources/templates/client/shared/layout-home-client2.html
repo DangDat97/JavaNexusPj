@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title th:text="${viewBag.title}"></title>
+    <link rel="stylesheet" href="~/client/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/client/css/animations.css">
+    <link rel="stylesheet" href="~/client/css/font-awesome.css">
+    <link rel="stylesheet" href="~/client/css/main.css" class="color-switcher-link">
+    <link rel="stylesheet" href="~/client/css/shop.css" class="color-switcher-link">
+    <script src="~/client/js/modernizr-2.6.2.min.js"></script>
+
+
+</head>
+
+<body>
+    <div class="preloader">
+        <div class="preloader_image"></div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" aria-labelledby="search_modal" id="search_modal">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="widget widget_search">
+            <a href="./" class="logo">
+                <span class="logo-text py-20"><strong>Nex</strong>us</span>
+            </a>
+            <form method="get" class="searchform search-form" action="/">
+                <div class="form-group">
+                    <input type="text" value="" name="search" class="form-control" placeholder="Search keyword"
+                        id="modal-search-input">
+                </div>
+                <button type="submit" class="btn">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Unyson messages modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="messages_modal">
+        <div class="fw-messages-wrap ls p-normal">
+            <!-- Uncomment this UL with LI to show messages in modal popup to your user: -->
+            <!--
+		<ul class="list-unstyled">
+			<li>Message To User</li>
+		</ul>
+		-->
+
+        </div>
+    </div><!-- eof .modal -->
+
+    <!-- wrappers for visual page editor and boxed version of template -->
+    <div id="canvas">
+        <div id="box_wrapper">
+
+            <!-- template sections -->
+
+            <!--topline section visible only on small screens|-->
+            <section class="page_topline ls s-borderbottom c-my-10 c-my-lg-20">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 text-md-left text-center">
+                            <ul class="top-includes">
+                                <li>
+                                    <span class="icon-inline">
+                                        <span class="icon-styled color-main fs-14">
+                                            <i class="fa fa-phone"></i>
+                                        </span>
+                                        <span class="small-text">
+                                            <a href="#">0862442297</a>
+                                        </span>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="icon-inline">
+                                        <span class="icon-styled color-main fs-14">
+                                            <i class="fa fa-pencil"></i>
+                                        </span>
+                                        <span class="small-text">
+                                            <a href="#"><span class="__cf_email__"
+                                                    data-cfemail="#">dangvandat09@gmail.com</span></a>
+                                        </span>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 text-center text-md-right d-none d-md-block">
+                            <ul class="top-includes">
+                                <li>
+                                    <span class="icon-inline">
+                                        <span class="icon-styled color-main2 fs-14">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                        <span class="small-text">
+                                            <a class="hover-main2" asp-area="" asp-controller="Auth" asp-action="Login">
+                                                Login in / sign up</a>
+                                        </span>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!--eof topline-->
+
+            <div class="header_absolute header_layout_1">
+                <div id="particles-js"></div>
+                <!-- header with two Bootstrap columns - left for logo and right for navigation and includes (search, social icons, additional links and buttons etc -->
+                <header class="page_header ls justify-nav-end">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col-xl-2 col-lg-4 col-md-5 col-11">
+                                <a href="./" class="logo">
+                                    <span class="logo-text py-20"><strong>Nex</strong>us</span>
+                                </a>
+                            </div>
+                            <div class="col-xl-9 col-lg-8 col-md-7 col-1">
+                                <div class="nav-wrap">
+
+                                    <div th:replace="fragments/category :: category">
+
+                                    <!--hidding includes on small devices. They are duplicated in topline-->
+                                    <ul class="top-includes d-none d-xl-block search-icon">
+
+                                        <li>
+                                            <!--modal search-->
+                                            <span>
+                                                <a href="#" class="search_modal_button">
+                                                    <i class="fa fa-search"></i>
+                                                </a>
+                                            </span>
+
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- header toggler -->
+                    <span class="toggle_menu"><span></span></span>
+                </header>
+
+                <div class="page_header_wrapper main-header-side">
+                    <div class="page_header_side header_slide header_side_right ls">
+                        <span class="toggle_menu toggle_menu_side header-slide"><span></span></span>
+                        <div class="scrollbar-macosx">
+                            <div class="side_header_inner">
+                                <div class="header-side-menu">
+                                    <!-- main side nav start -->
+                                    <nav class="mainmenu_side_wrapper">
+                                        <ul class="nav menu-click">
+                                            <li>
+                                                <a href="faq.html">
+                                                    <i class="color-main7 fa fa-question-circle"></i>
+                                                    FAQ
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="booking-form.html">
+                                                    <i class="color-main7 fa fa-paper-plane"></i>
+                                                    Submit a ticket
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="terms_of_use.html">
+                                                    <i class="color-main7 fa fa-rocket"></i>
+                                                    Terms Of Use
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="availability-map.html">
+                                                    <i class="color-main7 fa fa-file-text-o"></i>
+                                                    Terms of Service
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="contact.html">
+                                                    <i class="color-main7 fa fa-phone"></i>
+                                                    call me back
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                    <!-- eof main side nav -->
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="facebook-messeger d-flex align-items-center hero-bg">
+                            <img src="~/client/images/messeger.png" alt="">
+                            <a href="https://messenger.com" class="small-text">
+                                facebook messeger
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <section class="page_title cs s-pt-60 s-pb-10 s-pt-lg-130 s-pb-lg-60 page_title text-center">
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <div class="divider-60"></div>
+
+                            <div class="col-md-12 text-center">
+                                <h1>@ViewBag.Title </h1>
+                            </div>
+
+                            <div class="divider-50"></div>
+
+                        </div>
+
+                    </div>
+                    <ol class="breadcrumb full-width">
+                        <li class="breadcrumb-item">
+                            <a href="./">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#">Shop</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            Shop with Left Sidebar
+                        </li>
+                    </ol>
+                </section>
+            </div>
+
+
+            <div th:replace="${content}"></div>
+
+            <section class="footer-carousel c-gutter-0 container-px-0 s-py-0">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <div class="owl-carousel small-gallery-carousel" data-margin="0" data-responsive-lg="8"
+                                data-responsive-md="4" data-responsive-sm="3" data-responsive-xs="2" data-nav="true"
+                                data-loop="true">
+
+                                <a href="~/client/images/f03.jpg" class="photoswipe-link" data-width="800"
+                                    data-height="800">
+                                    <img src="~/client/images/f03.jpg" alt="">
+                                </a>
+                                <a href="~/client/images/04.jpg" class="photoswipe-link" data-width="800"
+                                    data-height="800">
+                                    <img src="~/client/images/04.jpg" alt="">
+                                </a>
+                                <a href="~/client/images/f05.jpg" class="photoswipe-link" data-width="800"
+                                    data-height="800">
+                                    <img src="~/client/images/f05.jpg" alt="">
+                                </a>
+                                <a href="~/client/images/06.jpg" class="photoswipe-link" data-width="800"
+                                    data-height="800">
+                                    <img src="~/client/images/06.jpg" alt="">
+                                </a>
+                                <a href="~/client/images/f07.jpg" class="photoswipe-link" data-width="800"
+                                    data-height="800">
+                                    <img src="~/client/images/f07.jpg" alt="">
+                                </a>
+                                <a href="~/client/images/08.jpg" class="photoswipe-link" data-width="800"
+                                    data-height="800">
+                                    <img src="~/client/images/08.jpg" alt="">
+                                </a>
+                                <a href="~/client/images/09.jpg" class="photoswipe-link" data-width="800"
+                                    data-height="800">
+                                    <img src="~/client/images/09.jpg" alt="">
+                                </a>
+                                <a href="~/client/images/f10.jpg" class="photoswipe-link" data-width="800"
+                                    data-height="800">
+                                    <img src="~/client/images/f10.jpg" alt="">
+                                </a>
+                                <a href="~/client/images/01.jpg" class="photoswipe-link" data-width="800"
+                                    data-height="800">
+                                    <img src="~/client/images/01.jpg" alt="">
+                                </a>
+                                <a href="~/client/images/02.jpg" class="photoswipe-link" data-width="800"
+                                    data-height="800">
+                                    <img src="~/client/images/02.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div th:replace="fragments/footer :: footer"></div>
+
+
+        </div><!-- eof #box_wrapper -->
+    </div><!-- eof #canvas -->
+
+
+    <script data-cfasync="false" src="~/client/js/email-decode.min.js"></script>
+    <script src="~/client/js/compressed.js"></script>
+    <script src="~/client/js/main.js"></script>
+    <script src="~/client/js/switcher.js"></script>
+
+</body>
+
+</html>
