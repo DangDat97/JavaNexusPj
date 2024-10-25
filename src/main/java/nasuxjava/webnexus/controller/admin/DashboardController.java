@@ -12,7 +12,7 @@ public class DashboardController {
 
     @GetMapping("/Dashboard")
     public String viewDashboard(Model model) {
-        model.addAttribute("content", "/admin/dashboard.html");
+        model.addAttribute("content", "admin/dashboard.html");
         return LAYOUT;
     }
 }

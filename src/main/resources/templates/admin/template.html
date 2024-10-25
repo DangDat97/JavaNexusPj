@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
         content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
-    <link rel="shortcut icon" th:href="/admin/images/favicon.png">
+    <link rel="shortcut icon" th:href="@{/admin/images/favicon.png}">
     <title>Default Dashboard | DashLite Admin Template</title>
-    <link rel="stylesheet" th:href="/admin/css/dashlite.css?ver=3.2.3">
-    <link id="skin-default" rel="stylesheet" th:href="/admin/css/theme.css?ver=3.2.3">
+    <link rel="stylesheet" th:href="@{/admin/css/dashlite.css(ver=3.2.3)}">
+    <link id="skin-default" rel="stylesheet" th:href="@{/admin/css/theme.css(ver=3.2.3)}">
 </head>
 
 <body class="nk-body bg-lighter npc-default has-sidebar ">
@@ -19,41 +19,33 @@
             <div class="nk-sidebar nk-sidebar-fixed is-light " data-content="sidebarMenu">
                 <div class="nk-sidebar-element nk-sidebar-head">
                     <div class="nk-sidebar-brand">
-                        <a th:href="./index.html" class="logo-link nk-sidebar-logo">
-                            <img class="logo-light logo-img" src="/admin/images/logo.png"
-                                srcset="/admin/images/logo2x.png 2x" alt="logo">
-                            <img class="logo-dark logo-img" src="/admin/images/logo-dark.png"
-                                srcset="/admin/images/logo-dark2x.png 2x" alt="logo-dark">
-                            <img class="logo-small logo-img logo-img-small" src="/admin/images/logo-small.png"
-                                srcset="/admin/images/logo-small2x.png 2x" alt="logo-small">
+                        <a th:href="@{/index.html}" class="logo-link nk-sidebar-logo">
+                            <img class="logo-light logo-img" th:src="@{/admin/images/logo.png}"
+                                srcset="@{/admin/images/logo2x.png 2x}" alt="logo">
+                            <img class="logo-dark logo-img" th:src="@{/admin/images/logo-dark.png}"
+                                srcset="@{/admin/images/logo-dark2x.png 2x}" alt="logo-dark">
+                            <img class="logo-small logo-img logo-img-small" th:src="@{/admin/images/logo-small.png}"
+                                srcset="@{/admin/images/logo-small2x.png 2x}" alt="logo-small">
                         </a>
                     </div>
                     <div class="nk-menu-trigger me-n2">
-                        <a th:href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu">
+                        <a th:href="@{/}" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu">
                             <em class="icon ni ni-arrow-left"></em>
                         </a>
-                        <a th:href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex"
+                        <a th:href="@{/}" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex"
                             data-target="sidebarMenu">
                             <em class="icon ni ni-menu"></em>
                         </a>
                     </div>
                 </div>
 
-                
-
-
-
-
-
-
-
-<!-- //Menu -->
+                <!-- //Menu -->
                 <div class="nk-sidebar-element">
                     <div class="nk-sidebar-content">
                         <div class="nk-sidebar-menu">
                             <ul class="nk-menu">
                                 <li class="nk-menu-item">
-                                    <a th:href="#" class="nk-menu-link">
+                                    <a th:href="@{/}" class="nk-menu-link">
                                         <span class="nk-menu-icon">
                                             <em class="icon ni ni-home-fill"></em>
                                         </span>
@@ -61,7 +53,7 @@
                                     </a>
                                 </li>
                                 <li class="nk-menu-item has-sub ">
-                                    <a th:href="#" class="nk-menu-link nk-menu-toggle">
+                                    <a th:href="@{/}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon">
                                             <em class="icon ni ni-users-fill"></em>
                                         </span>
@@ -69,19 +61,19 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item ">
-                                            <a th:href="Create" class="nk-menu-link">
+                                            <a th:href="@{/user/create}" class="nk-menu-link">
                                                 <span class="nk-menu-text">Create</span>
                                             </a>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <a th:href="Index" class="nk-menu-link">
+                                            <a th:href="@{/user/index}" class="nk-menu-link">
                                                 <span class="nk-menu-text">User List</span>
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub ">
-                                    <a th:href="#" class="nk-menu-link nk-menu-toggle">
+                                    <a th:href="@{/}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon">
                                             <em class="icon ni ni-user-list-fill"></em>
                                         </span>
@@ -89,19 +81,19 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
-                                            <a th:href="#" class="nk-menu-link">
+                                            <a th:href="@{/}" class="nk-menu-link">
                                                 <span class="nk-menu-text">Customer List</span>
                                             </a>
                                         </li>
                                         <li class="nk-menu-item ">
-                                            <a th:href="/demo2/customer-details.html" class="nk-menu-link">
+                                            <a th:href="@{/demo2/customer-details.html}" class="nk-menu-link">
                                                 <span class="nk-menu-text">Customer Details</span>
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub ">
-                                    <a th:href="#" class="nk-menu-link nk-menu-toggle">
+                                    <a th:href="@{/}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon">
                                             <em class="icon ni ni-cc-alt2-fill"></em>
                                         </span>
@@ -109,14 +101,14 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item ">
-                                            <a th:href="Index" class="nk-menu-link">
+                                            <a th:href="@{/order/index}" class="nk-menu-link">
                                                 <span class="nk-menu-text">Order List - Default</span>
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub ">
-                                    <a th:href="#" class="nk-menu-link nk-menu-toggle">
+                                    <a th:href="@{/}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon">
                                             <em class="icon ni ni-file-docs"></em>
                                         </span>
@@ -124,19 +116,19 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item ">
-                                            <a th:href="/demo2/invoice-list.html" class="nk-menu-link">
+                                            <a th:href="@{/demo2/invoice-list.html}" class="nk-menu-link">
                                                 <span class="nk-menu-text">Invoice List</span>
                                             </a>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <a th:href="/demo2/invoice-details.html" class="nk-menu-link">
+                                            <a th:href="@{/demo2/invoice-details.html}" class="nk-menu-link">
                                                 <span class="nk-menu-text">Invoice Details</span>
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub">
-                                    <a th:href="#" class="nk-menu-link nk-menu-toggle">
+                                    <a th:href="@{/}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon">
                                             <em class="icon ni ni-card-view"></em>
                                         </span>
@@ -144,20 +136,19 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
-                                            <a th:href="Create" class="nk-menu-link">
+                                            <a th:href="@{/product/create}" class="nk-menu-link">
                                                 <span class="nk-menu-text">Product Card</span>
                                             </a>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <a th:href="Index" class="nk-menu-link">
+                                            <a th:href="@{/product/index}" class="nk-menu-link">
                                                 <span class="nk-menu-text">Product List</span>
                                             </a>
                                         </li>
-                
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub">
-                                    <a th:href="Logout" class="nk-menu-link nk-menu-toggle">
+                                    <a th:href="@{/logout}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon">
                                             <em class="icon ni ni-card-view"></em>
                                         </span>
@@ -168,30 +159,23 @@
                         </div>
                     </div>
                 </div>
-
-
-
-<!-- EndMenu -->
-
-
-
-
+                <!-- EndMenu -->
             </div>
             <div class="nk-wrap ">
                 <div class="nk-header nk-header-fixed is-light">
                     <div class="container-fluid">
                         <div class="nk-header-wrap">
                             <div class="nk-menu-trigger d-xl-none ms-n1">
-                                <a th:href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu">
+                                <a th:href="@{/}" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu">
                                     <em class="icon ni ni-menu"></em>
                                 </a>
                             </div>
                             <div class="nk-header-brand d-xl-none">
-                                <a th:href="./index.html" class="logo-link">
-                                    <img class="logo-light logo-img" src="/admin/images/logo.png"
-                                        srcset="/admin/images/logo2x.png 2x" alt="logo">
-                                    <img class="logo-dark logo-img" src="/admin/images/logo-dark.png"
-                                        srcset="/admin/images/logo-dark2x.png 2x" alt="logo-dark">
+                                <a th:href="@{/}" class="logo-link">
+                                    <img class="logo-light logo-img" th:src="@{/admin/images/logo.png}"
+                                        srcset="@{/admin/images/logo2x.png 2x}" alt="logo">
+                                    <img class="logo-dark logo-img" th:src="@{/admin/images/logo-dark.png}"
+                                        srcset="@{/admin/images/logo-dark2x.png 2x}" alt="logo-dark">
                                 </a>
                             </div>
                             <div class="nk-header-search ms-3 ms-xl-0">
@@ -202,37 +186,37 @@
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
                                     <li class="dropdown language-dropdown d-none d-sm-block me-n1">
-                                        <a th:href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                                        <a th:href="@{/}" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
                                             <div class="quick-icon border border-light">
-                                                <img class="icon" src="/admin/images/english-sq.png" alt="">
+                                                <img class="icon" th:src="@{/admin/images/english-sq.png}" alt="">
                                             </div>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-s1">
                                             <ul class="language-list">
                                                 <li>
-                                                    <a th:href="#" class="language-item">
-                                                        <img src="/admin/images/english.png" alt=""
+                                                    <a th:href="@{/}" class="language-item">
+                                                        <img th:src="@{/admin/images/english.png}" alt=""
                                                             class="language-flag">
                                                         <span class="language-name">English</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a th:href="#" class="language-item">
-                                                        <img src="/admin/images/spanish.png" alt=""
+                                                    <a th:href="@{/}" class="language-item">
+                                                        <img th:src="@{/admin/images/spanish.png}" alt=""
                                                             class="language-flag">
                                                         <span class="language-name">Español</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a th:href="#" class="language-item">
-                                                        <img src="/admin/images/french.png" alt=""
+                                                    <a th:href="@{/}" class="language-item">
+                                                        <img th:src="@{/admin/images/french.png}" alt=""
                                                             class="language-flag">
                                                         <span class="language-name">Français</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a th:href="#" class="language-item">
-                                                        <img src="/admin/images/turkey.png" alt=""
+                                                    <a th:href="@{/}" class="language-item">
+                                                        <img th:src="@{/admin/images/turkey.png}" alt=""
                                                             class="language-flag">
                                                         <span class="language-name">Türkçe</span>
                                                     </a>
@@ -241,7 +225,7 @@
                                         </div>
                                     </li>
                                     <li class="dropdown chats-dropdown hide-mb-xs">
-                                        <a th:href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                                        <a th:href="@{/}" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
                                             <div class="icon-status icon-status-na">
                                                 <em class="icon ni ni-comments"></em>
                                             </div>
@@ -249,12 +233,12 @@
                                         <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end">
                                             <div class="dropdown-head">
                                                 <span class="sub-title nk-dropdown-title">Recent Chats</span>
-                                                <a th:href="#">Setting</a>
+                                                <a th:href="@{/}">Setting</a>
                                             </div>
                                             <div class="dropdown-body">
                                                 <ul class="chat-list">
                                                     <li class="chat-item">
-                                                        <a class="chat-link" th:href="./apps-chats.html">
+                                                        <a class="chat-link" th:href="@{/}">
                                                             <div class="chat-media user-avatar">
                                                                 <span>IH</span>
                                                                 <span class="status dot dot-lg dot-gray"></span>
@@ -265,7 +249,7 @@
                                                                     <span class="time">Now</span>
                                                                 </div>
                                                                 <div class="chat-context">
-                                                                    <div class="text">You: Please confrim if you got my
+                                                                    <div class="text">You: Please confirm if you got my
                                                                         last messages.</div>
                                                                     <div class="status delivered">
                                                                         <em class="icon ni ni-check-circle-fill"></em>
@@ -275,7 +259,7 @@
                                                         </a>
                                                     </li>
                                                     <li class="chat-item is-unread">
-                                                        <a class="chat-link" th:href="./apps-chats.html">
+                                                        <a class="chat-link" th:href="@{/}">
                                                             <div class="chat-media user-avatar bg-pink">
                                                                 <span>AB</span>
                                                                 <span class="status dot dot-lg dot-success"></span>
@@ -287,7 +271,7 @@
                                                                 </div>
                                                                 <div class="chat-context">
                                                                     <div class="text">Hi, I am Ishtiyak, can you help me
-                                                                        with this problem ?</div>
+                                                                        with this problem?</div>
                                                                     <div class="status unread">
                                                                         <em class="icon ni ni-bullet-fill"></em>
                                                                     </div>
@@ -296,9 +280,9 @@
                                                         </a>
                                                     </li>
                                                     <li class="chat-item">
-                                                        <a class="chat-link" th:href="./apps-chats.html">
+                                                        <a class="chat-link" th:href="@{/}">
                                                             <div class="chat-media user-avatar">
-                                                                <img src="/admin/images/b-sm.jpg" alt="">
+                                                                <img th:src="@{/admin/images/b-sm.jpg}" alt="">
                                                             </div>
                                                             <div class="chat-info">
                                                                 <div class="chat-from">
@@ -306,17 +290,17 @@
                                                                     <span class="time">6 Apr</span>
                                                                 </div>
                                                                 <div class="chat-context">
-                                                                    <div class="text">Have you seens the claim from
+                                                                    <div class="text">Have you seen the claim from
                                                                         Rose?</div>
                                                                 </div>
                                                             </div>
                                                         </a>
                                                     </li>
                                                     <li class="chat-item">
-                                                        <a class="chat-link" th:href="./apps-chats.html">
+                                                        <a class="chat-link" th:href="@{/}">
                                                             <div class="chat-media user-avatar user-avatar-multiple">
                                                                 <div class="user-avatar">
-                                                                    <img src="/admin/images/c-sm.jpg" alt="">
+                                                                    <img th:src="@{/admin/images/c-sm.jpg}" alt="">
                                                                 </div>
                                                                 <div class="user-avatar">
                                                                     <span>AB</span>
@@ -329,7 +313,7 @@
                                                                 </div>
                                                                 <div class="chat-context">
                                                                     <div class="text">You: I just bought a new computer
-                                                                        but i am having some problem</div>
+                                                                        but I am having some problem</div>
                                                                     <div class="status sent">
                                                                         <em class="icon ni ni-check-circle"></em>
                                                                     </div>
@@ -338,9 +322,9 @@
                                                         </a>
                                                     </li>
                                                     <li class="chat-item">
-                                                        <a class="chat-link" th:href="./apps-chats.html">
+                                                        <a class="chat-link" th:href="@{/}">
                                                             <div class="chat-media user-avatar">
-                                                                <img src="/admin/images/a-sm.jpg" alt="">
+                                                                <img th:src="@{/admin/images/a-sm.jpg}" alt="">
                                                                 <span class="status dot dot-lg dot-success"></span>
                                                             </div>
                                                             <div class="chat-info">
@@ -349,13 +333,13 @@
                                                                     <span class="time">3 Apr</span>
                                                                 </div>
                                                                 <div class="chat-context">
-                                                                    <div class="text">Hi Frank! How is you doing?</div>
+                                                                    <div class="text">Hi Frank! How are you doing?</div>
                                                                 </div>
                                                             </div>
                                                         </a>
                                                     </li>
                                                     <li class="chat-item">
-                                                        <a class="chat-link" th:href="./apps-chats.html">
+                                                        <a class="chat-link" th:href="@{/}">
                                                             <div class="chat-media user-avatar bg-purple">
                                                                 <span>TW</span>
                                                             </div>
@@ -366,7 +350,7 @@
                                                                 </div>
                                                                 <div class="chat-context">
                                                                     <div class="text">You: I just bought a new computer
-                                                                        but i am having some problem</div>
+                                                                        but I am having some problem</div>
                                                                     <div class="status sent">
                                                                         <em class="icon ni ni-check-circle"></em>
                                                                     </div>
@@ -377,12 +361,12 @@
                                                 </ul>
                                             </div>
                                             <div class="dropdown-foot center">
-                                                <a th:href="./apps-chats.html">View All</a>
+                                                <a th:href="@{/}">View All</a>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="dropdown notification-dropdown">
-                                        <a th:href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                                        <a th:href="@{/}" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
                                             <div class="icon-status icon-status-info">
                                                 <em class="icon ni ni-bell"></em>
                                             </div>
@@ -390,72 +374,24 @@
                                         <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end">
                                             <div class="dropdown-head">
                                                 <span class="sub-title nk-dropdown-title">Notifications</span>
-                                                <a th:href="#">Mark All as Read</a>
+                                                <a th:href="@{/}">Mark All as Read</a>
                                             </div>
                                             <div class="dropdown-body">
                                                 <div class="nk-notification">
                                                     <div class="nk-notification-item dropdown-inner">
                                                         <div class="nk-notification-icon">
-                                                            <em
-                                                                class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                            <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
                                                         </div>
                                                         <div class="nk-notification-content">
                                                             <div class="nk-notification-text">You have requested to
-                                                                <span>Widthdrawl</span>
+                                                                <span>Withdraw</span>
                                                             </div>
                                                             <div class="nk-notification-time">2 hrs ago</div>
                                                         </div>
                                                     </div>
                                                     <div class="nk-notification-item dropdown-inner">
                                                         <div class="nk-notification-icon">
-                                                            <em
-                                                                class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">Your <span>Deposit
-                                                                    Order</span> is placed </div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em
-                                                                class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">You have requested to
-                                                                <span>Widthdrawl</span>
-                                                            </div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em
-                                                                class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">Your <span>Deposit
-                                                                    Order</span> is placed </div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em
-                                                                class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">You have requested to
-                                                                <span>Widthdrawl</span>
-                                                            </div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em
-                                                                class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                            <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
                                                         </div>
                                                         <div class="nk-notification-content">
                                                             <div class="nk-notification-text">Your <span>Deposit
@@ -466,21 +402,19 @@
                                                 </div>
                                             </div>
                                             <div class="dropdown-foot center">
-                                                <a th:href="#">View All</a>
+                                                <a th:href="@{/}">View All</a>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="dropdown user-dropdown">
-                                        <a th:href="#" class="dropdown-toggle me-n1" data-bs-toggle="dropdown">
+                                        <a th:href="@{/}" class="dropdown-toggle me-n1" data-bs-toggle="dropdown">
                                             <div class="user-toggle">
                                                 <div class="user-avatar sm">
                                                     <em class="icon ni ni-user-alt"></em>
                                                 </div>
                                                 <div class="user-info d-none d-xl-block">
                                                     <div class="user-status user-status-unverified">Unverified</div>
-                                                    <div class="user-name dropdown-indicator">Abu Bin Ishityak
-
-                                                    </div>
+                                                    <div class="user-name dropdown-indicator">Abu Bin Ishityak</div>
                                                 </div>
                                             </div>
                                         </a>
@@ -499,19 +433,19 @@
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
                                                     <li>
-                                                        <a th:href="./user-profile-regular.html">
+                                                        <a th:href="@{/user-profile-regular.html}">
                                                             <em class="icon ni ni-user-alt"></em>
                                                             <span>View Profile</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a th:href="./user-profile-setting.html">
+                                                        <a th:href="@{/user-profile-setting.html}">
                                                             <em class="icon ni ni-setting-alt"></em>
                                                             <span>Account Setting</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a th:href="./user-profile-activity.html">
+                                                        <a th:href="@{/user-profile-activity.html}">
                                                             <em class="icon ni ni-activity-alt"></em>
                                                             <span>Login Activity</span>
                                                         </a>
@@ -521,7 +455,7 @@
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
                                                     <li>
-                                                        <a th:href="#">
+                                                        <a th:href="@{/signout}">
                                                             <em class="icon ni ni-signout"></em>
                                                             <span>Sign out</span>
                                                         </a>
@@ -540,7 +474,7 @@
                     <div class="container-fluid">
                         <div class="nk-footer-wrap">
                             <div class="nk-footer-copyright"> &copy; 2023 DashLite. Template by <a
-                                    th:href="https://softnio.com" target="_blank">Softnio</a>
+                                    th:href="@{/}" target="_blank">Softnio</a>
                             </div>
                         </div>
                     </div>
@@ -548,10 +482,10 @@
             </div>
         </div>
     </div>
-    <script src="/admin/js/bundle.js?ver=3.2.3"></script>
-    <script src="/admin/js/scripts.js?ver=3.2.3"></script>
-    <script src="/admin/js/demo-settings.js?ver=3.2.3"></script>
-    <script src="/admin/js/chart-ecommerce.js?ver=3.2.3"></script>
+    <script th:src="@{/admin/js/bundle.js?ver=3.2.3}"></script>
+    <script th:src="@{/admin/js/scripts.js?ver=3.2.3}"></script>
+    <script th:src="@{/admin/js/demo-settings.js?ver=3.2.3}"></script>
+    <script th:src="@{/admin/js/chart-ecommerce.js?ver=3.2.3}"></script>
 </body>
 
 </html>
