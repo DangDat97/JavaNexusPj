@@ -1,0 +1,14 @@
+<div th:if="${user != null}">
+    <h2>User Information</h2>
+    <p>Name: <span th:text="${user.fullName}"></span></p>
+    <p>Email: <span th:text="${user.email}"></span></p>
+    <!-- Thêm các thuộc tính khác của user nếu cần -->
+</div>
+<div th:if="${user == null}">
+    <p>No user information available.</p>
+</div>
+
+<div th:if="${session.userLoginInfo}"></div>
+    <p>Chào, <span th:text="${session.userLoginInfo.email}"></span>!</p>
+    <p>Vai trò: <span th:text="${#lists.join(session.userLoginInfo.roles, ', ')}"></span></p>
+</div>

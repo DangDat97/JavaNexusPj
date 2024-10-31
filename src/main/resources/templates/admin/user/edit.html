@@ -1,0 +1,53 @@
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="components-preview wide-md mx-auto">
+                    <div class="nk-block-head nk-block-head-lg wide-sm">
+                        <div class="nk-block-head-content">
+                            <div class="nk-block-head-sub">
+                                <a class="back-to" asp-action="Index" asp-controller="InforUsers">
+                                    <em class="icon ni ni-arrow-left"></em>
+                                    <span>List User</span>
+                                </a>
+                            </div>
+                            <h2 class="nk-block-title fw-normal">Edit User</h2>
+                        </div>
+                    </div>
+                    <div class="nk-block nk-block-lg">
+                        <div class="card card-bordered card-preview">
+                            <div class="card-inner">
+                                <div class="preview-block">
+                                    <form action="#" th:action="@{/Admin/Users/Edit/{id}(id=${userDto.id})}" method="post" th:object="${userDto}">
+                                        <label for="fullName">Full Name:</label>
+                                        <input type="text" id="fullName" th:field="*{fullName}" required><br>
+                                    
+                                        <label for="email">Email:</label>
+                                        <input type="email" id="email" th:field="*{email}" required><br>
+                                    
+                                        <label for="password">Password:</label>
+                                        <input type="password" id="password" th:field="*{password}"><br>
+                                    
+                                        <label for="address">Address:</label>
+                                        <input type="text" id="address" th:field="*{address}"><br>
+                                    
+                                        <label for="phone">Phone:</label>
+                                        <input type="text" id="phone" th:field="*{phone}" pattern="(84|0[3|5|7|8|9])+([0-9]{8})" required><br>
+                                    
+                                        <label for="image">Image:</label>
+                                        <input type="file" id="image" th:field="*{image}"><br>
+                                    
+                                        <label for="note">Note:</label>
+                                        <textarea id="note" th:field="*{note}" maxlength="1000"></textarea><br>
+                                    
+                                        <button type="submit">Update User</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

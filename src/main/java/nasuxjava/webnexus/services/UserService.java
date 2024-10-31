@@ -16,6 +16,8 @@ public interface UserService {
 
     void saveUser(UserDto userDto);
 
+    void saveUserRegister(UserDto userDto);
+
     void deleteUser(Long id);
 
     User updateUser(User user);
@@ -27,4 +29,5 @@ public interface UserService {
     List<User> getUsersByRole(String role);
 
     boolean authenticateUser(String email, String password);
+
 }

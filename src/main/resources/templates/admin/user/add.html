@@ -1,0 +1,94 @@
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="components-preview wide-md mx-auto">
+                    <div class="nk-block-head nk-block-head-lg wide-sm">
+                        <div class="nk-block-head-content">
+                            <div class="nk-block-head-sub">
+                                <a class="back-to" th:href="@{/Admin/Users}">
+                                    <em class="icon ni ni-arrow-left"></em>
+                                    <span>List User</span>
+                                </a>
+                            </div>
+                            <h2 class="nk-block-title fw-normal">Create New User</h2>
+                        </div>
+                    </div>
+                    <div class="nk-block nk-block-lg">
+                        <div class="card card-bordered card-preview">
+                            <div class="card-inner">
+                                <div class="preview-block">
+                                    <div class="card-head"><h5 class="card-title">Customer Info</h5></div>
+
+                                    <form method="post" th:action="@{/Admin/users/add}" th:object="${user}" enctype="multipart/form-data">
+                                        <div class="row g-4">
+                                            <div class="col-lg-6">
+                                                <div class="form-group"><label class="form-label" for="fullName">Full Name</label>
+                                                    <div class="form-control-wrap"><input type="text" class="form-control" th:field="*{fullName}"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group"><label class="form-label" for="email">Email address</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" class="form-control" id="email" th:field="*{email}">
+                                                        <div data-lastpass-icon-root=""
+                                                            style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group"><label class="form-label" for="password">Password</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" class="form-control" id="password" th:field="*{password}">
+                                                        <div data-lastpass-icon-root=""
+                                                            style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group"><label class="form-label" for="phone">Phone No</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" class="form-control" id="phone" th:field="*{phone}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="address">Address</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" class="form-control" id="address" th:field="*{address}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group"><label class="form-label" for="phone">image</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="file" class="form-control" id="image" th:field="*{image}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="note">Note</label>
+                                                    <div class="form-control-wrap">
+                                                        <textarea id="note" class="form-control" th:field="*{note}" maxlength="1000"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group"><button type="submit" class="btn btn-lg btn-primary">Save User</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

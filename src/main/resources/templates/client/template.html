@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title th:text="${title}">Title</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -84,7 +84,7 @@
                                             <i class="fa fa-user"></i>
                                         </span>
                                         <span class="small-text">
-                                            <a class="hover-main2" asp-area="" asp-controller="Auth" asp-action="Login">
+                                            <a class="hover-main2" href="/login">
                                                 Login in / sign up</a>
                                         </span>
                                     </span>
@@ -113,8 +113,8 @@
 
                                     <nav class="top-nav">
                                         <ul class="nav sf-menu">
-                                    
-                                    
+
+
                                             <li class="active">
                                                 <a href="/">Home</a>
                                             </li>
@@ -127,25 +127,25 @@
                                             <li>
                                                 <a href="/Booking">About</a>
                                             </li>
-                                    
+
                                             <li>
                                                 <a href="/Shop">Shop</a>
                                                 <ul>
-                                                   
+                                                    <li th:each="category : ${categories}">
+                                                        <a th:href="@{/shop/category/{id}(id=${category.id})}"
+                                                            th:text="${category.name}"></a>
+                                                    </li>
                                                 </ul>
                                             </li>
-                                    
-                                    
+
+
                                             <!-- blog -->
                                             <li>
                                                 <a href="/Dashboard">Acount</a>
                                                 <ul>
-                                    
+
                                                     <li>
                                                         <a href="/Cart">Cart</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="/Account">Account</a>
                                                     </li>
                                                     <li>
                                                         <a href="/Account/Dashboard">Dashboard</a>
@@ -162,8 +162,8 @@
                                                     <li>
                                                         <a href="/Account/Orders">Orders</a>
                                                     </li>
-                                    
-                                    
+
+
                                                 </ul>
                                             </li>
                                             <!-- eof blog -->
@@ -183,19 +183,21 @@
                                                 <a>Admin</a>
                                                 <ul>
                                                     <li>
-                                                        <a asp-area="" asp-controller="Admin" asp-action="Index">Admin Index</a>
+                                                        <a href="/Admin/Dashboard">Admin
+                                                            Index</a>
                                                     </li>
                                                     <li>
-                                                        <a asp-area="" asp-controller="Admin" asp-action="Login">Check Out</a>
-                                                    </li> 
+                                                        <a href="/logout">Check
+                                                            Out</a>
+                                                    </li>
                                                 </ul>
                                             </li>
                                             <!-- eof contacts -->
                                             <!-- eof features -->
-                                    
+
                                         </ul>
-                                    
-                                    
+
+
                                     </nav>
 
                                     <!--hidding includes on small devices. They are duplicated in topline-->
@@ -392,7 +394,7 @@
                         </div>
                     </a>
                 </div>
-            </section> 
+            </section>
 
             <i th:replace="${content}"></i>
 
@@ -455,19 +457,21 @@
                 <div class="container">
                     <div class="row">
                         <div class="divider-20 d-none d-xl-block"></div>
-            
+
                         <div class="col-md-6 col-xl-3 order-xl-1 order-md-1 animate" data-animation="fadeInUp">
-            
+
                             <div class="widget widget_text">
                                 <h4 class="widget-title">About</h4>
                                 <p>
-                                    Welcome largest broadband and Internet services provider where you can choose the best plan
+                                    Welcome largest broadband and Internet services provider where you can choose the
+                                    best plan
                                     ever.
                                 </p>
                                 <div class="widget widget_social_buttons">
                                     <a href="#" class="fa fa-facebook color-bg-icon rounded-icon" title="facebook"></a>
                                     <a href="#" class="fa fa-twitter color-bg-icon rounded-icon" title="twitter"></a>
-                                    <a href="#" class="fa fa-youtube-play color-bg-icon rounded-icon" title="youtube-play"></a>
+                                    <a href="#" class="fa fa-youtube-play color-bg-icon rounded-icon"
+                                        title="youtube-play"></a>
                                 </div>
                             </div>
                         </div>
