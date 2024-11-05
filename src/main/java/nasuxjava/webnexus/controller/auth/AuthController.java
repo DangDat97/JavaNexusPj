@@ -22,24 +22,18 @@ public class AuthController {
         this.userService = userService;
     }
 
-    // handler method to handle home page request
-    @GetMapping("/index")
-    public String home() {
-        return "index";
-    }
-
     // handler method to handle user registration form request
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         // create model object to store form data
-        UserDto user = new UserDto();
-        model.addAttribute("user", user);
+        UserDto userDto = new UserDto();
+        model.addAttribute("UserDto", userDto);
         return "/auth/register";
     }
 
     // handler method to handle user registration form submit request
     @PostMapping("/register/save")
-    public String registration(@Valid @ModelAttribute("user") UserDto userDto,
+    public String registration(@Valid @ModelAttribute("UserDto") UserDto userDto,
             BindingResult result,
             Model model) {
         // User existingUser = userService.findUserByEmail(userDto.getEmail());

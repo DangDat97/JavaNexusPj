@@ -1,0 +1,167 @@
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title" th:text="${title}"></h3>
+                            <div class="nk-block-des text-soft">
+                                <p>You have total users.</p>
+                            </div>
+                        </div>
+                        <div class="nk-block-head-content">
+                            <div class="toggle-wrap nk-block-tools-toggle">
+                                <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
+                                    data-target="more-options">
+                                    <em class="icon ni ni-more-v"></em>
+                                </a>
+                                <div class="toggle-expand-content" >
+                                    <ul class="nk-block-tools g-3">
+                                        <li>
+                                            <div class="form-control-wrap">
+                                                <div class="form-icon form-icon-right">
+                                                    <em class="icon ni ni-search"></em>
+                                                </div>
+                                                <input type="text" class="form-control" id="default-04"
+                                                    placeholder="Search by name">
+                                            </div>
+                                        </li>
+                                        <li class="nk-block-tools-opt">
+                                            <a href="#" class="btn btn-icon btn-primary d-md-none">
+                                                <em class="icon ni ni-plus"></em>
+                                            </a>
+                                            <a href="/Admin/Users/Add" class="btn btn-primary d-none d-md-inline-flex">
+                                                <em class="icon ni ni-plus"></em>
+                                                <span>Add</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nk-block">
+                    <div class="row g-gs">
+                        <div class="col-xxl-4 col-md-8 col-lg-6">
+                            <div class="card card-bordered card-preview">
+                                
+                                <div class="card-inner">
+                                    <span class="preview-title-lg overline-title">Add Category</span>
+                                    <form method="post" th:action="@{/Admin/Category/add}" th:object="${Category}">
+                                        <div class="row g-4">
+                                            <div class="col-lg-6">
+                                                <div class="form-group"><label class="form-label" for="Name">Name</label>
+                                                    <div class="form-control-wrap"><input type="text" class="form-control" th:field="*{name}"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group"><button type="submit" class="btn btn-lg btn-primary">Save Category</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>  
+                            
+                        </div>
+                        <div class="col-xxl-8">
+                            <div class="nk-tb-list is-separate mb-3">
+                                <div class="nk-tb-item nk-tb-head">
+                                    <div class="nk-tb-col nk-tb-col-check">
+                                        <div class="custom-control custom-control-sm custom-checkbox notext">
+                                            <input type="checkbox" class="custom-control-input" id="uid">
+                                            <label class="custom-control-label" for="uid"></label>
+                                        </div>
+                                    </div>
+                                    <div class="nk-tb-col">
+                                        <span class="sub-text">Name</span>
+                                    </div>
+                                    <div class="nk-tb-col nk-tb-col-tools">
+                                        <span class="sub-text">Act</span>
+                                    </div>
+                                </div>
+                                <div class="nk-tb-item" th:each="category : ${categories}">
+                                    <div class="nk-tb-col nk-tb-col-check">
+                                        <div class="custom-control custom-control-sm custom-checkbox notext">
+                                            <input type="checkbox" class="custom-control-input" id="${user.id}">
+                                            <label class="custom-control-label" for="${user.id}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="nk-tb-col tb-col-mb">
+                                        <span class="tb-amount">
+                                            <span th:text="${category.name}"></span>
+                                        </span>
+                                    </div>
+                                    <div class="nk-tb-col nk-tb-col-tools">
+                                        <ul class="nk-tb-actions gx-1">
+                                            <li class="nk-tb-action-hidden">
+                                                <a class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    aria-label="Edit" data-bs-original-title="Edit">
+                                                    <em class="icon ni ni-edit-alt-fill"></em>
+                                                </a>
+                                            </li>
+                                            <li class="nk-tb-action-hidden">
+                                                <a class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    aria-label="View" data-bs-original-title="View">
+                                                    <em class="icon ni ni-eye-alt-fill"></em>
+                                                </a>
+                                            </li>
+                                            <li class="nk-tb-action-hidden">
+                                                <a class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    aria-label="Delete" data-bs-original-title="Delete">
+                                                    <em class="icon ni ni-trash-fill"></em>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            
+                            
+                            
+                            
+                            
+                            </div>
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="nk-block-between-md g-3">
+                                        <div class="g">
+                                            <ul class="pagination justify-content-center justify-content-md-start">
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#">Prev</a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#">1</a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#">2</a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <span class="page-link">
+                                                        <em class="icon ni ni-more-h"></em>
+                                                    </span>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#">6</a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#">7</a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#">Next</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

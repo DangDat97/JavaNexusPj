@@ -84,7 +84,7 @@
                                 </form> -->
 
 
-                                <form method="post" role="form" th:action="@{/register/save}" th:object="${user}">
+                                <form method="post" role="form" th:action="@{/register/save}" th:object="${UserDto}">
                                     <div class="form-group mb-3">
                                         <label class="form-label">First Name</label>
                                         <input class="form-control" id="fullName" name="fullName" placeholder="Enter first name"

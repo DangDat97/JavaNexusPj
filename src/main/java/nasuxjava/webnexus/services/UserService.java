@@ -3,6 +3,8 @@ package nasuxjava.webnexus.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+
 import nasuxjava.webnexus.dto.UserDto;
 import nasuxjava.webnexus.entity.User;
 
@@ -20,7 +22,13 @@ public interface UserService {
 
     void deleteUser(Long id);
 
-    User updateUser(User user);
+    User updateUser(UserDto userDto);
+
+    UserDto convertEntityToDto(User user);
+
+    List<UserDto> convertListEntityToDto(List<User> user);
+
+    User convertDtoToEntity(UserDto userDto);
 
     Optional<User> getUserByEmail(String email);
 
@@ -29,5 +37,7 @@ public interface UserService {
     List<User> getUsersByRole(String role);
 
     boolean authenticateUser(String email, String password);
+
+    Page<User> findPaginated(int page, int size);
 
 }

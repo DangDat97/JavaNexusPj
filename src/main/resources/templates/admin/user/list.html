@@ -5,39 +5,92 @@
                 <div class="nk-block-head nk-block-head-sm">
                     <div class="nk-block-between">
                         <div class="nk-block-head-content">
-                            <h3 class="nk-block-title page-title">User Lists</h3>
+                            <h3 class="nk-block-title page-title" th:text="${title}">User Lists</h3>
                             <div class="nk-block-des text-soft">
-                                <p>You have total users.</p>
+                                <p>You have total 2,595 users.</p>
                             </div>
                         </div>
                         <div class="nk-block-head-content">
                             <div class="toggle-wrap nk-block-tools-toggle">
-                                <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
-                                    data-target="more-options">
-                                    <em class="icon ni ni-more-v"></em>
-                                </a>
                                 <div class="toggle-expand-content" >
-                                    <ul class="nk-block-tools g-3">
+                                    <ul class="nk-block-tools g-3" style="justify-content: center;">
                                         <li>
-                                            <div class="form-control-wrap">
-                                                <div class="form-icon form-icon-right">
-                                                    <em class="icon ni ni-search"></em>
-                                                </div>
-                                                <input type="text" class="form-control" id="default-04"
-                                                    placeholder="Search by name">
-                                            </div>
-                                        </li>
-                                        <li class="nk-block-tools-opt">
-                                            <a href="#" class="btn btn-icon btn-primary d-md-none">
-                                                <em class="icon ni ni-plus"></em>
-                                            </a>
-                                            <a href="/Admin/Users/Add" class="btn btn-primary d-none d-md-inline-flex">
-                                                <em class="icon ni ni-plus"></em>
-                                                <span>Add</span>
+                                            <a href="#filter-user"  class="btn btn-white btn-outline-light"><em class="icon ni ni-filter-alt"></em><span>Filter User </span>
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="/Admin/Order" class="btn btn-white btn-outline-light">
+                                                <em class="icon ni ni-cc-alt2-fill"></em><span>List Order</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Admin/Booking" class="btn btn-white btn-outline-light">
+                                                <em class="icon ni ni-list-thumb-alt-fill"></em><span>List Booking</span>
+                                            </a>
+                                        </li>
+                                        <li class="nk-block-tools-opt"><a href="/Admin/Users/Add" class="btn btn-icon btn-primary d-md-none"><em
+                                                    class="icon ni ni-plus"></em></a><a href="/Admin/Users/Add" class="btn btn-primary d-none d-md-inline-flex"><em
+                                                    class="icon ni ni-plus"></em><span>Add</span></a></li>
                                     </ul>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nk-block nk-block-lg " id="filter-user">
+                    <div class="card card-bordered card-preview">
+                        <div class="card-inner">
+                            <div class="preview-block">
+                                <div class="card-head">
+                                    <h5 class="card-title" >Filter User</h5>
+                                </div>
+                
+                                <form method="get" th:action="@{/Admin/Users/Filter}" th:object="${userFilterDto}"
+                                    enctype="multipart/form-data">
+                                    <div class="row g-4">
+                                        <div class="col-lg-4">
+                                            <div class="form-group"><label class="form-label" for="fullName">Full Name</label>
+                                                <div class="form-control-wrap"><input type="text" class="form-control"
+                                                        th:field="*{fullName}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group"><label class="form-label" for="email">Email address</label>
+                                                <div class="form-control-wrap">
+                                                    <input type="text" class="form-control" id="email" th:field="*{email}">
+                                                    <div data-lastpass-icon-root=""
+                                                        style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group"><label class="form-label" for="phone">Phone No</label>
+                                                <div class="form-control-wrap">
+                                                    <input type="text" class="form-control" id="phone" th:field="*{phone}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group"><label class="form-label" for="page">page</label>
+                                                <div class="form-control-wrap">
+                                                    <input type="number" class="form-control" id="page" th:field="*{page}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group"><label class="form-label" for="size">Size</label>
+                                                <div class="form-control-wrap">
+                                                    <input type="number" class="form-control" id="size" th:field="*{size}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group"><button type="submit" class="btn btn-lg btn-primary">Search</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -66,9 +119,6 @@
                             <div class="nk-tb-col tb-col-lg">
                                 <span class="sub-text">Last Order</span>
                             </div>
-                            <div class="nk-tb-col tb-col-md">
-                                <span class="sub-text">Status</span>
-                            </div>
                             <div class="nk-tb-col nk-tb-col-tools">
                                 <span class="sub-text">Act</span>
                             </div>
@@ -83,11 +133,9 @@
                             <div class="nk-tb-col">
                                 <a asp-action="Details" id="${user.id}">
                                     <div class="user-card">
-                                        <div class="user-avatar bg-primary"><span>None</span></div>
-                                        <div class="user-avatar">
-                                            <img th:src="@{/admin/images/${user.image}}">
-                                            <!-- th:src="@{/admin/images/logo-dark.png} -->
-                                            <!-- <img src="@Url.Content(" ~/admin/images/"+item.Image)"> -->
+                                        <div class="user-avatar bg-primary" th:unless="${user.imageName}"><span>None</span></div>
+                                        <div class="user-avatar" th:if="${user.imageName}">
+                                            <img th:src="@{/uploads/{image}(image=${user.imageName})}" style="height: 100%;"  alt="User Image" >
                                         </div>
                                         <div class="user-info">
                                             <span class="tb-lead">
@@ -121,15 +169,6 @@
                                 <!-- <span th:text="${user}"></span> -->
                                 <!-- <span>@Html.DisplayFor(modelItem => item.Orders.FirstOrDefault(x => x.CustomerId == item.Id).CrateAt)</span> -->
                             </div>
-                            <div class="nk-tb-col tb-col-md">
-                                <!-- @if (item.User.Status == true)
-                                {
-                                <span class="tb-status text-success">Active</span>
-                                }else{
-                                <span class="tb-status text-danger">Not Active</span>
-                                } -->
-                        
-                            </div>
                             <div class="nk-tb-col nk-tb-col-tools">
                                 <ul class="nk-tb-actions gx-1">
                                     <li class="nk-tb-action-hidden">
@@ -145,7 +184,8 @@
                                         </a>
                                     </li>
                                     <li class="nk-tb-action-hidden">
-                                        <a th:href="@{/Admin/Users/Delete/{id}(id=${user.id})}" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip"
+                                        <!-- th:href="@{/Admin/Users/Delete/{id}(id=${user.id})}" -->
+                                        <a  class="btn btn-trigger btn-icon eg-swal-error" data-bs-toggle="tooltip"
                                             data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete">
                                             <em class="icon ni ni-trash-fill"></em>
                                         </a>
@@ -164,28 +204,25 @@
                             <div class="nk-block-between-md g-3">
                                 <div class="g">
                                     <ul class="pagination justify-content-center justify-content-md-start">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Prev</a>
+                                        <li class="page-item"th:if="${currentPage > 0}">
+                                            <a class="page-link" th:href="@{Users(page=${currentPage - 1}, size=${size})}">Prev</a>
                                         </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">1</a>
+                                        <!-- <li>
+                                            <span th:if="${currentPage > 0}"> <a th:href="@{Users(page=${currentPage - 1}, size=${size})}">Previous</a> </span>
+                                            <span th:each="pageNum : ${#numbers.sequence(0, totalPages - 1)}"> <a th:if="${pageNum != currentPage}"
+                                                    th:href="@{Users(page=${pageNum}, size=${size})}" th:text="${pageNum + 1}"></a> <span
+                                                    th:if="${pageNum == currentPage}" th:text="${pageNum + 1}"></span> </span> 
+                                            <span th:if="${currentPage < totalPages - 1}"> <a th:href="@{Users(page=${currentPage + 1}, size=${size})}">Next</a>
+                                        </li> -->
+                                        <li class="page-item" th:each="pageNum : ${#numbers.sequence(0, totalPages - 1)}">
+                                            <a class="page-link" th:if="${pageNum != currentPage}" th:href="@{Users(page=${pageNum}, size=${size})}" th:text="${pageNum + 1}"></a>
+                                            <a class="page-link" th:if="${pageNum == currentPage}" style="background-color: #f5f6fa;"  th:text="${pageNum + 1}">1</a>
                                         </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <span class="page-link">
-                                                <em class="icon ni ni-more-h"></em>
-                                            </span>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">6</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">7</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
+                                        <!-- <il class="page-item" th:if="${pageNum == currentPage}">
+                                            <a class="page-link" href="/" th:text="${pageNum + 1}">1</a>
+                                        </il> -->
+                                        <li class="page-item" th:if="${currentPage < totalPages - 1}">
+                                            <a class="page-link" th:href="@{Users(page=${currentPage + 1}, size=${size})}">Next</a>
                                         </li>
                                     </ul>
                                 </div>

@@ -14,20 +14,23 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserDto {
     private Long id;
+
     @NotEmpty(message = "Email should not be empty")
     @Email(message = "Please provide a valid email address")
     private String email;
+
+    @NotEmpty
     @Min(value = 8, message = "Password must be at least 8 characters")
     private String password;
 
     private String fullName;
     private String address;
+
     @Pattern(regexp = "(84|0[3|5|7|8|9])+([0-9]{8})\\b")
     private String phone;
 
     private MultipartFile image;
 
-    @Size(max = 255, message = "Image path cannot exceed 255 characters")
     private String imageName;
     @Size(max = 1000, message = "Notes must not exceed 1000 characters.")
     private String note;

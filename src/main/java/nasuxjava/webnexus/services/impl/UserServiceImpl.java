@@ -7,9 +7,10 @@ import nasuxjava.webnexus.repository.RoleRepository;
 import nasuxjava.webnexus.repository.UserRepository;
 import nasuxjava.webnexus.services.UserService;
 
-import org.apache.tomcat.util.http.fileupload.impl.IOFileUploadException;
-import org.hibernate.mapping.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +34,7 @@ public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
-    private final String PathUpload = "src/main/resources/static/uploads";
+    private final String PathUpload = "src/main/resources/static/uploads/";
     // private static final String[] ALLOWED_IMAGE_TYPES = { "image/jpeg",
     // "image/png", "image/gif" };
     // private static final long MAX_FILE_SIZE = 1024 * 1024 * 5; // 5MB
@@ -68,9 +70,11 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
-    private UserDto convertEntityToDto(User user) {
+    @Override
+    public UserDto convertEntityToDto(User user) {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
+        userDto.setPassword(user.getPassword());
         userDto.setFullName(user.getFullName());
         userDto.setEmail(user.getEmail());
         userDto.setAddress(user.getAddress());
@@ -82,26 +86,43 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserDto> convertListEntityToDto(List<User> users) {
+        return users.stream().map((user) -> convertEntityToDto(user))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public User convertDtoToEntity(UserDto userdDto) {
+        User user = new User();
+        user.setId(userdDto.getId());
+        user.setFullName(userdDto.getFullName());
+        user.setEmail(userdDto.getEmail());
+        user.setAddress(userdDto.getAddress());
+        user.setPassword(userdDto.getPassword());
+
+        if (!userdDto.getImage().isEmpty()) {
+            user.setImage(userdDto.getImage().getOriginalFilename());
+            try {
+                importImage(userdDto.getImage());
+            } catch (Exception e) {
+                throw new RuntimeException(e.getMessage());
+            }
+        }
+
+        user.setNote(userdDto.getNote());
+        user.setPhone(userdDto.getPhone());
+
+        return user;
+    }
+
+    @Override
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
     }
 
     @Override
     public void saveUser(UserDto userDto) {
-        User user = new User();
-        user.setFullName(userDto.getFullName());
-        user.setEmail(userDto.getEmail());
-        user.setAddress(userDto.getAddress());
-        try {
-            importImage(userDto.getImage());
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
-        }
-
-        user.setImage(userDto.getImage().getOriginalFilename());
-
-        user.setNote(userDto.getNote());
-        user.setPhone(userDto.getPhone());
+        User user = convertDtoToEntity(userDto);
         user.setDatecreate(Date.from(Instant.now()));
         // encrypt the password using spring security
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
@@ -111,7 +132,12 @@ public class UserServiceImpl implements UserService {
             role = checkRoleExist();
         }
         user.setRoles(List.of(role));
-        userRepository.save(user);
+        try {
+            userRepository.save(user);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+
     }
 
     public void importImage(MultipartFile file) throws IOException {
@@ -122,7 +148,7 @@ public class UserServiceImpl implements UserService {
             Files.createDirectories(Paths.get(PathUpload));
         }
         String fileName = file.getOriginalFilename();
-        String filePath = PathUpload + UUID.randomUUID().toString() + "_" + fileName;
+        String filePath = PathUpload + fileName;
         try {
             Files.copy(file.getInputStream(), Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
         } catch (Exception e) {
@@ -153,7 +179,11 @@ public class UserServiceImpl implements UserService {
             role = checkRoleRegisterExist();
         }
         user.setRoles(List.of(role));
-        userRepository.save(user);
+        try {
+            userRepository.save(user);
+        } catch (Exception e) {
+
+        }
     }
 
     private Role checkRoleRegisterExist() {
@@ -164,12 +194,29 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+        try {
+            userRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+
     }
 
     @Override
-    public User updateUser(User user) {
-        return userRepository.save(user);
+    public User updateUser(UserDto userDto) {
+        User user = userRepository.findById(userDto.getId()).orElseThrow();
+        user.getPassword();
+        userDto.getPassword();
+        if (!passwordEncoder.matches(user.getPassword(), userDto.getPassword())) {
+            userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        }
+        user = convertDtoToEntity(userDto);
+        try {
+            return userRepository.save(user);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+
     }
 
     @Override
@@ -187,6 +234,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByRole(role);
     }
 
+    @Override
+    public Page<User> findPaginated(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return userRepository.findAll(pageable);
+    }
     // @Override
     // public String getUserlongin() {
     // Authentication authentication =
@@ -196,3 +248,16 @@ public class UserServiceImpl implements UserService {
     // return username;
     // }
 }
+
+// @GetMapping
+// public String listUsers(@RequestParam(value = "page", defaultValue = "0") int
+// page,
+// @RequestParam(value = "size", defaultValue = "10") int size,Model model) {
+// List<UserDto> users = userService.getAllUsers();
+// UserFilterDto userFilterDto = new UserFilterDto();
+// model.addAttribute("userFilterDto", userFilterDto);
+// model.addAttribute("users", users);
+// model.addAttribute("title", "List Users");
+// model.addAttribute("content", PATH + "/list.html");
+// return LAYOUT;
+// }

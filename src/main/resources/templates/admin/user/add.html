@@ -3,24 +3,47 @@
         <div class="nk-content-inner">
             <div class="nk-content-body">
                 <div class="components-preview wide-md mx-auto">
-                    <div class="nk-block-head nk-block-head-lg wide-sm">
+                    <div class="nk-block-head nk-block-head-lg">
                         <div class="nk-block-head-content">
-                            <div class="nk-block-head-sub">
-                                <a class="back-to" th:href="@{/Admin/Users}">
-                                    <em class="icon ni ni-arrow-left"></em>
-                                    <span>List User</span>
-                                </a>
+                            <div class="toggle-wrap nk-block-tools-toggle">
+                                <div class="toggle-expand-content">
+                                    <ul class="nk-block-tools g-3" style="justify-content: center;">
+                                        <li>
+                                            <a href="/Admin/Users" class="btn btn-white btn-outline-light"><em
+                                                    class="icon ni ni-list-index"></em><span>List User</span>
+                                                </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Admin/Order" class="btn btn-white btn-outline-light">
+                                                <em class="icon ni ni-cc-alt2-fill"></em><span>List Order</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Admin/Booking" class="btn btn-white btn-outline-light">
+                                                <em class="icon ni ni-list-thumb-alt-fill"></em><span>List Booking</span>
+                                            </a>
+                                        </li>
+                                        <!-- <li class="nk-block-tools-opt">
+                                            <a href="#" class="btn btn-icon btn-primary d-md-none">
+                                                <em class="icon ni ni-plus"></em>
+                                            </a>
+                                            <a href="/Admin/Users/Add" class="btn btn-primary d-none d-md-inline-flex">
+                                                <em class="icon ni ni-plus"></em>
+                                                <span>Add</span>
+                                            </a>
+                                        </li> -->
+                                    </ul>
+                                </div>
                             </div>
-                            <h2 class="nk-block-title fw-normal">Create New User</h2>
                         </div>
                     </div>
                     <div class="nk-block nk-block-lg">
                         <div class="card card-bordered card-preview">
                             <div class="card-inner">
                                 <div class="preview-block">
-                                    <div class="card-head"><h5 class="card-title">Customer Info</h5></div>
+                                    <div class="card-head"><h5 class="card-title" th:text="${title}">Customer Info</h5></div>
 
-                                    <form method="post" th:action="@{/Admin/users/add}" th:object="${user}" enctype="multipart/form-data">
+                                    <form method="post" th:action="@{/Admin/Users/Add}" th:object="${userDto}" enctype="multipart/form-data">
                                         <div class="row g-4">
                                             <div class="col-lg-6">
                                                 <div class="form-group"><label class="form-label" for="fullName">Full Name</label>
@@ -40,7 +63,7 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group"><label class="form-label" for="password">Password</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" class="form-control" id="password" th:field="*{password}">
+                                                        <input type="password" class="form-control" id="password" th:field="*{password}">
                                                         <div data-lastpass-icon-root=""
                                                             style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
                                                         </div>
