@@ -43,14 +43,16 @@ public class SpringSecurity {
 
         @Bean
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-                http.csrf().disable().authorizeHttpRequests((authorize) -> authorize
-                                // .requestMatchers("/admin/**",
-                                // "/client/**", "/webjars/**", "/resources/**")
-                                // .permitAll()
-                                // .requestMatchers("/index", "/register", "/login").permitAll()
-                                // .requestMatchers("/users").hasRole("ADMIN")
-                                // .requestMatchers("/Admin/**").authenticated()
-                                .anyRequest().permitAll())
+                http
+                                .csrf(csrf -> csrf.disable())
+                                .authorizeHttpRequests((authorize) -> authorize
+                                                // .requestMatchers("/admin/**",
+                                                // "/client/**", "/webjars/**", "/resources/**")
+                                                // .permitAll()
+                                                // .requestMatchers("/index", "/register", "/login").permitAll()
+                                                // .requestMatchers("/users").hasRole("ADMIN")
+                                                // .requestMatchers("/Admin/**").authenticated()
+                                                .anyRequest().permitAll())
                                 .formLogin(
                                                 form -> form
                                                                 .loginPage("/login")
@@ -79,7 +81,7 @@ public class SpringSecurity {
                                                                 .permitAll())
                                 .sessionManagement(session -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                                                .maximumSessions(1) // Giới hạn số phiên đăng nhập đồng thời
+                                                .maximumSessions(10) // Giới hạn số phiên đăng nhập đồng thời
                                                 .expiredUrl("/login?expired") // URL để chuyển hướng khi phiên hết hạn
                                 );
                 return http.build();

@@ -20,6 +20,10 @@ public interface UserService {
 
     void saveUserRegister(UserDto userDto);
 
+    User saveUserOrder(User user, String password);
+
+    User updateUserDetails(User user);
+
     void deleteUser(Long id);
 
     User updateUser(UserDto userDto);
@@ -40,4 +44,7 @@ public interface UserService {
 
     Page<User> findPaginated(int page, int size);
 
+    Page<User> findPaginatedAndFiltered(int page, int size, String fullname, String email, String phone);
+
+    long countUser();
 }

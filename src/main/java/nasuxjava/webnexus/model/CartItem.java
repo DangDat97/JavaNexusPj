@@ -1,20 +1,32 @@
 package nasuxjava.webnexus.model;
 
-import java.math.BigDecimal;
+import java.io.Serializable;
 
-public class CartItem {
-    private Long productId;
+import lombok.Getter;
+import lombok.Setter;
+import nasuxjava.webnexus.entity.Product;
+
+@Setter
+@Getter
+public class CartItem implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private Product product;
     private int quantity;
-    private BigDecimal price;
 
-    public CartItem(Long productId, int quantity, BigDecimal price) {
-        this.productId = productId;
-        this.quantity = quantity;
-        this.price = price;
+    public CartItem() {
     }
 
-    public Long getProductId() {
-        return productId;
+    public CartItem(Product product, int quantity) {
+        this.product = product;
+        this.quantity = quantity;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public int getQuantity() {
@@ -23,9 +35,5 @@ public class CartItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
     }
 }

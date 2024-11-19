@@ -2,12 +2,15 @@ package nasuxjava.webnexus.services;
 
 import nasuxjava.webnexus.entity.Distributor;
 import java.util.List;
-import java.util.Optional;
 
 public interface DistributorService {
     List<Distributor> getAllDistributors();
 
-    Optional<Distributor> getDistributorById(Long id);
+    String getNameDistributor(Long id);
+
+    Distributor getDistributorById(Long id);
+
+    Distributor getDistributorByName(String name);
 
     Distributor saveDistributor(Distributor distributor);
 

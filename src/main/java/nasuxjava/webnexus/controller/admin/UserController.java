@@ -3,12 +3,12 @@ package nasuxjava.webnexus.controller.admin;
 import nasuxjava.webnexus.dto.UserDto;
 import nasuxjava.webnexus.dto.UserFilterDto;
 import nasuxjava.webnexus.entity.User;
-import nasuxjava.webnexus.repository.UserFilterResposotory;
 import nasuxjava.webnexus.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
@@ -26,7 +26,7 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    private static final String LAYOUT = "admin/template";
+    private static final String TEMPLATE = "admin/template";
     private static final String PATH = "/admin/user";
     private static final String REDIRECTLIST = "redirect:/Admin/Users";
     private static final String REDIRECTADD = "redirect:/Admin/Users/Add";
@@ -34,9 +34,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private UserFilterResposotory userFilterResposotory;
 
     @Autowired
     private HttpSession session;
@@ -49,7 +46,7 @@ public class UserController {
     // model.addAttribute("users", users);
     // model.addAttribute("title", "List Users");
     // model.addAttribute("content", PATH + "/list.html");
-    // return LAYOUT;
+    // return TEMPLATE;
     // }
 
     @GetMapping
@@ -58,36 +55,38 @@ public class UserController {
         Page<User> userPage = userService.findPaginated(page, size);
         List<UserDto> users = userService.convertListEntityToDto(userPage.getContent());
         model.addAttribute("users", userPage.getContent());
+        model.addAttribute("countUser", userService.countUser());
         model.addAttribute("currentPage", page);
         model.addAttribute("size", size);
         model.addAttribute("totalPages", userPage.getTotalPages());
         model.addAttribute("userFilterDto", new UserFilterDto());
         model.addAttribute("users", users);
+        model.addAttribute("urlDelete", "Users");
         model.addAttribute("title", "List Users");
         model.addAttribute("content", PATH + "/list.html");
-        return LAYOUT;
+        return TEMPLATE;
     }
 
     @GetMapping("/Filter")
     public String filterUser(@ModelAttribute("userFilterDto") UserFilterDto userFilterDto,
             Model model) {
-        Pageable pageable = PageRequest.of(userFilterDto.getPage(), userFilterDto.getSize());
+        model.addAttribute("content", PATH + "/list.html");
         List<UserDto> listUserDto = new ArrayList<>();
-        // try {
-        // Page<User> users =
-        // userFilterResposotory.findFilteredUsers(userFilterDto.getFullName(),
-        // userFilterDto.getEmail(), userFilterDto.getPhone(), pageable);
 
-        // listUserDto = userService.convertListEntityToDto(users.getContent());
-        // model.addAttribute("totalPages", users.getTotalPages());
-        // } catch (Exception e) {
-        // session.setAttribute("message.error", e.getMessage());
-        // return REDIRECTLIST;
-        // }
+        try {
+            Page<User> userPage = userService.findPaginatedAndFiltered(userFilterDto.getPage(),
+                    userFilterDto.getSize(), userFilterDto.getFullName(), userFilterDto.getEmail(),
+                    userFilterDto.getPhone());
+            listUserDto = userService.convertListEntityToDto(userPage.getContent());
+            model.addAttribute("totalPages", userPage.getTotalPages());
+        } catch (Exception e) {
+            session.setAttribute("message.error", e.getMessage());
+            return TEMPLATE;
+        }
         model.addAttribute("users", listUserDto);
-
+        model.addAttribute("size", userFilterDto.getSize());
         model.addAttribute("currentPage", userFilterDto.getPage());
-        return REDIRECTLIST;
+        return TEMPLATE;
     }
 
     @GetMapping("/Add")
@@ -95,7 +94,7 @@ public class UserController {
         model.addAttribute("userDto", new UserDto());
         model.addAttribute("title", "Add Users");
         model.addAttribute("content", PATH + "/add.html");
-        return LAYOUT;
+        return TEMPLATE;
     }
 
     @PostMapping("/Add")
@@ -128,7 +127,7 @@ public class UserController {
         model.addAttribute("title", "Edit Users");
         model.addAttribute("userDto", userDto);
         model.addAttribute("content", PATH + "/edit.html");
-        return LAYOUT; // Trả về view hiển thị form sửa người dùng
+        return TEMPLATE; // Trả về view hiển thị form sửa người dùng
     }
 
     @GetMapping("/Detail/{id}")
@@ -140,7 +139,7 @@ public class UserController {
         model.addAttribute("title", "Details User");
         model.addAttribute("userDto", userDto);
         model.addAttribute("content", PATH + "/detail.html");
-        return LAYOUT; // Trả về view hiển thị form sửa người dùng
+        return TEMPLATE; // Trả về view hiển thị form sửa người dùng
     }
 
     @PostMapping("/Edit/{id}")
@@ -152,12 +151,6 @@ public class UserController {
             session.setAttribute("message.error", result.getAllErrors());
             return REDIRECTEDIT + "/" + id;
         }
-        // User user = userService.getUserById(id).orElseThrow();
-        // if (user.getPassword().equals(userDto.getPassword()) != true &&
-        // userDto.getPassword() != null) {
-        // userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        // }
-        // user = userService.convertDtoToEntity(userDto, user);
         userDto.setId(id);
         try {
             userService.updateUser(userDto);
@@ -169,15 +162,15 @@ public class UserController {
         return REDIRECTEDIT + "/" + id; // Chuyển hướng về danh sách người dùng sau khi sửa
     }
 
-    @GetMapping("/Delete/{id}")
-    public String deleteUser(@PathVariable Long id) {
+    @DeleteMapping("/Delete/{id}")
+    @ResponseBody
+    public ResponseEntity<Boolean> deleteUser(@PathVariable Long id) {
         try {
             userService.deleteUser(id);
+            return ResponseEntity.ok(true);
         } catch (Exception e) {
-            session.setAttribute("message.error", e.getMessage());
-            return REDIRECTEDIT + "/" + id;
+            return ResponseEntity.ok(false);
         }
 
-        return REDIRECTLIST; // Chuyển hướng về danh sách người dùng sau khi xóa
     }
 }

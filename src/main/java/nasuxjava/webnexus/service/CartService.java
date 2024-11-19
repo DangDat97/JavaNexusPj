@@ -1,41 +1,40 @@
 package nasuxjava.webnexus.service;
 
+import nasuxjava.webnexus.entity.Product;
 import nasuxjava.webnexus.model.Cart;
-import org.springframework.stereotype.Service;
+import nasuxjava.webnexus.model.CartItem;
 
-import jakarta.servlet.http.HttpSession;
-import java.math.BigDecimal;
+import java.io.Serializable;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.SessionScope;
 
 @Service
-public class CartService {
+@SessionScope
+public class CartService implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private Cart cart = new Cart();
 
-    private static final String CART_SESSION_KEY = "cart";
-
-    public Cart getCart(HttpSession session) {
-        Cart cart = (Cart) session.getAttribute(CART_SESSION_KEY);
-        if (cart == null) {
-            cart = new Cart();
-            session.setAttribute(CART_SESSION_KEY, cart);
-        }
+    public Cart getCart() {
         return cart;
     }
 
-    public void saveCart(HttpSession session, Cart cart) {
-        session.setAttribute(CART_SESSION_KEY, cart);
+    public void addToCart(Product product, int quantity) {
+
+        cart.addItem(product, quantity);
     }
 
-    public void addItemToCart(HttpSession session, Long productId, int quantity, BigDecimal price) {
-        Cart cart = getCart(session);
-        cart.addItem(productId, quantity, price);
+    public void removeFromCart(Product product) {
+        cart.removeItem(product);
     }
 
-    public void removeItemFromCart(HttpSession session, Long productId) {
-        Cart cart = getCart(session);
-        cart.removeItem(productId);
-    }
-
-    public BigDecimal getTotalPrice(HttpSession session) {
-        Cart cart = getCart(session);
-        return cart.getTotalPrice();
+    public void updateCart(Cart updatedCart) {
+        for (CartItem updatedItem : updatedCart.getItems()) {
+            for (CartItem currentItem : cart.getItems()) {
+                if (currentItem.getProduct().getId().equals(updatedItem.getProduct().getId())) {
+                    currentItem.setQuantity(updatedItem.getQuantity());
+                }
+            }
+        }
     }
 }

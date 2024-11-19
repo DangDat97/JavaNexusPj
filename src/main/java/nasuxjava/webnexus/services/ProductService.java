@@ -1,5 +1,7 @@
 package nasuxjava.webnexus.services;
 
+import nasuxjava.webnexus.dto.ProductDto;
+import nasuxjava.webnexus.dto.ProductFilterDto;
 import nasuxjava.webnexus.entity.Product;
 import nasuxjava.webnexus.model.Cart;
 
@@ -14,11 +16,13 @@ public interface ProductService {
 
     Optional<Product> getProductById(Long id);
 
-    Product saveProduct(Product product);
+    void saveProduct(ProductDto productDto);
 
     void deleteProduct(Long id);
 
     long getProductCount();
+
+    List<Product> getAll();
 
     Page<Product> getProductsByCategory(Long categoryId, Pageable pageable);
 
@@ -26,8 +30,19 @@ public interface ProductService {
 
     List<Product> getProductsByPriceRange(double minPrice, double maxPrice);
 
-    public void addProductToCart(Cart cart, Long productId, int quantity);
-    // List<Product> getTopRatedProducts(int limit);
+    // public void addProductToCart(Cart cart, Long productId, int quantity);
 
-    List<Product> getProductsByCategoryAndPriceRange(Long categoryId, double minPrice, double maxPrice);
+    // List<Product> getTopRatedProducts(int limit);
+    // ProductDto convertEntityToDto(Product product);
+    ProductDto convertProductToDto(Product product);
+
+    // List<ProductDto> convertListProductEntityToDto(List<Product> products);
+    // Page<Product> getProductsByFillterQ(ProductFilterDto productFilterDto);
+    Page<Product> filterProducts(ProductFilterDto productFilterDto);
+
+    Page<Product> getProductsByFillter(ProductFilterDto productFilterDto);
+
+    Product updateProduct(ProductDto productDto);
+
+    long countProduct();
 }

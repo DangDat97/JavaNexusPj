@@ -5,31 +5,30 @@
                 <div class="columns-3">
 
                     <ul class="products">
-                        <!-- Changed @foreach to th:each -->
-                        <li th:each="product : ${products}" class="product vertical-item padding-small content-padding">
+
+                        <li class="product vertical-item padding-small content-padding" th:each="product : ${products}">
                             <div class="product-inner hero-bg rounded">
-                                <a class="link-scale" th:href="@{/home/product/{id}(id=${product.id})}">
+                                <a class="link-scale" th:href="@{/Product/{id}(id=${product.id})}">
                                     <span class="onsale small-text">Sale!</span>
-                                    <!-- <img th:src="@{'/admin/images/' + ${product.avatarImages}}" alt=""
-                                        style="max-height: 268px; width:268px; object-fit: cover;"> -->
+                                    <img th:src="@{/uploads/{image}(image=${product.image})}" alt="">
                                 </a>
                                 <div class="item-content">
-                                    <h2 th:text="${product.name}"></h2>
+                                    <h2 th:text="${product.name}">SM Router 01</h2>
                                     <div class="star-rating">
-                                        <span style="width:80%">
-                                            Rated <strong class="rating">4.00</strong>
-                                            out of 5
-                                        </span>
+                                        <span style="width:80%">Rated <strong class="rating">4.00</strong> out of
+                                            5</span>
                                     </div>
                                     <span class="price">
-                                        <span>$</span><span th:text="${product.price}"></span>
+                                        <!-- <del>
+                                            <span>
+                                                <span>$</span>250.00
+                                            </span>
+                                        </del> -->
+                                        <span>$</span><span th:text="${product.price}"></span> 
                                     </span>
-                                    <a rel="nofollow" th:href="@{/AddToCart/{id}(id=${product.id})}"
-                                        class="btn btn-maincolor small-btn product_type_simple add_to_cart_button">
-                                        <span>
-                                            Add to cart
-                                        </span>
-                                    </a>
+                                    <a rel="nofollow" th:href="@{/Cart/Add/{id}(id=${product.id})}"
+                                        class="btn btn-maincolor small-btn product_type_simple add_to_cart_button"><span>Add
+                                            to cart</span></a>
                                 </div>
                             </div>
                         </li>
@@ -39,25 +38,124 @@
 
                 <nav class="woocommerce-pagination">
                     <ul class="page-numbers">
-                        <!-- Replaced @Html.PagedListPager with Thymeleaf pagination -->
-                        <!-- <li th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
-                            <a th:href="@{/shop(page=${pageNumber})}" th:text="${pageNumber}"></a>
-                        </li> -->
-
                         <li th:if="${currentPage > 0}">
-                            <a th:href="@{/Shop(page=${currentPage - 1}, size=${size})}">Previous</a>
+                            <a class="next page-numbers" th:href="@{Shop(page=${currentPage - 1}, size=${size})}">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
                         </li>
-                        <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
-                            <a th:href="@{/Shop(page=${i}, size=${size})}" th:text="${i + 1}">1</a>
+                        <li th:each="pageNum : ${#numbers.sequence(0, totalPages - 1)}">
+                        <a class="next page-numbers" th:if="${pageNum != currentPage}" th:href="@{Shop(page=${pageNum}, size=${size})}"
+                            th:text="${pageNum + 1}"></a>
+                        <a class="next page-numbers" th:if="${pageNum == currentPage}" style="background-color: #f5f6fa;" th:text="${pageNum + 1}">1</a>
                         </li>
                         <li th:if="${currentPage < totalPages - 1}">
-                            <a th:href="@{/Shop(page=${currentPage + 1}, size=${size})}">Next</a>
+                            <a class="next page-numbers" th:href="@{Shop(page=${currentPage + 1}, size=${size})}">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         </li>
                     </ul>
                 </nav>
 
             </main>
-            <!-- ... rest of the code remains unchanged ... -->
+            <aside class="col-lg-4 col-xl-3 order-lg-1">
+                <div class="widget widget_product_search">
+
+                    <h5 class="widget-title">Search</h5>
+
+                    <form role="search" class="woocommerce-product-search" action="/">
+
+                        <label class="screen-reader-text" for="woocommerce-product-search-field-widget">
+                            Search for:
+                        </label>
+
+                        <input type="search" id="woocommerce-product-search-field-widget"
+                            class="search-field form-control" placeholder="Keyword" value="" name="search">
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+
+                <div class="widget woocommerce widget_shopping_cart" th:if="${cart}">
+
+                    <h5 class="widget-title">Shopping Cart</h5>
+
+                    <div class="widget_shopping_cart_content">
+
+                        <ul class="woocommerce-mini-cart cart_list product_list_widget " th:if="${cart.items}">
+                            <li class="woocommerce-mini-cart-item mini_cart_item" th:each="item : ${cart.items}">
+                                <a th:href="@{/Product/{id}(id=${item.product.id})}">
+                                    <img th:src="@{/uploads/{image}(image=${item.product.image})}" alt="">
+                                </a>
+                                <a class="cart-title" th:href="@{/Product/{id}(id=${item.product.id})}">
+                                    <span th:text="${item.product.name}"></span>
+                                </a>
+                                <a th:href="@{/Cart/Remove/{id}(id=${item.product.id})}" class="removeCustom" >×</a>
+                                <span class="quantity small-text"><span th:text="${item.quantity}"></span> x
+                                    <span class="woocommerce-Price-amount amount">
+                                        <span class="woocommerce-Price-currencySymbol">$</span>
+                                        <span th:text="${item.product.price}"></span>
+                                    </span>
+                                </span>
+                            </li>
+                        </ul>
+
+                        <p class="woocommerce-mini-cart__total total">
+                            <strong>Subtotal:</strong>
+                            <span class="woocommerce-Price-amount amount ">
+                                <span class="woocommerce-Price-currencySymbol">$</span>
+                                <span th:text="${totalPrice}"></span>
+                            </span>
+                        </p>
+
+                        <p class="woocommerce-mini-cart__buttons buttons">
+                            <a href="/Cart" class="btn btn-maincolor wc-forward"><span>View cart</span></a>
+                            <a href="/CheckOut"
+                                class="btn btn-outline-maincolor checkout wc-forward"><span>Checkout</span></a>
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="widget woocommerce widget_product_categories">
+                    <h5 class="widget-title">Categories</h5>
+                    <ul class="product-categories" >
+                        <li class="cat-item cat-parent" th:each="category : ${categories}">
+                            <a th:href="@{/shop/category/{id}(id=${category.id})}" th:text="${category.name}">Clothing</a>
+                            
+                        </li>
+
+                    </ul>
+                </div>
+
+
+                <div class="widget woocommerce widget_top_rated_products">
+                    <h5 class="widget-title">Top Products</h5>
+                    <ul class="product_list_widget">
+                        <li>
+                            <a href="shop-product-right.html">
+                                <img src="images/shop/01.jpg" alt="">
+                                <span class="product-title">IPTV Remote</span>
+                            </a>
+                            <div class="star-rating">
+                                <span style="width:100%">Rated
+                                    <strong class="rating">5.00 </strong>
+                                    out of 5
+                                </span>
+                            </div>
+                            <span class="woocommerce-Price-amount amount">
+                                <del>
+                                    <span>
+                                        <span>$</span>25.00
+                                    </span>
+                                </del>
+                                <span class="woocommerce-Price-currencySymbol">$</span>
+                                20.00
+                            </span>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </aside>
         </div>
     </div>
 </section>

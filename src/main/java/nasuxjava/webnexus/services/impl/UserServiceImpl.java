@@ -39,6 +39,7 @@ public class UserServiceImpl implements UserService {
     // "image/png", "image/gif" };
     // private static final long MAX_FILE_SIZE = 1024 * 1024 * 5; // 5MB
 
+    @Autowired
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
             PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
@@ -59,6 +60,11 @@ public class UserServiceImpl implements UserService {
         List<User> users = userRepository.findAll();
         return users.stream().map((user) -> convertEntityToDto(user))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public User updateUserDetails(User user) {
+        return userRepository.save(user);
     }
 
     @Override
@@ -186,6 +192,21 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public User saveUserOrder(User user, String password) {
+
+        user.setDatecreate(Date.from(Instant.now()));
+        user.setNote("Created when ordered");
+        user.setPassword(passwordEncoder.encode(password));
+        Role role = roleRepository.findByName("ROLE_CLIENT");
+        if (role == null) {
+            role = checkRoleRegisterExist();
+        }
+        user.setRoles(List.of(role));
+        return userRepository.save(user);
+
+    }
+
     private Role checkRoleRegisterExist() {
         Role role = new Role();
         role.setName("ROLE_CLIENT");
@@ -239,25 +260,16 @@ public class UserServiceImpl implements UserService {
         Pageable pageable = PageRequest.of(page, size);
         return userRepository.findAll(pageable);
     }
-    // @Override
-    // public String getUserlongin() {
-    // Authentication authentication =
-    // SecurityContextHolder.getContext().getAuthentication();
-    // String username = authentication.getName(); // Tên người dùng
 
-    // return username;
-    // }
+    @Override
+    public Page<User> findPaginatedAndFiltered(int page, int size, String fullname, String email, String phone) {
+        Pageable pageable = PageRequest.of(page, size);
+        return userRepository.findByFullNameContainingAndEmailContainingAndPhoneContaining(fullname, email, phone,
+                pageable);
+    }
+
+    @Override
+    public long countUser() {
+        return userRepository.count();
+    };
 }
-
-// @GetMapping
-// public String listUsers(@RequestParam(value = "page", defaultValue = "0") int
-// page,
-// @RequestParam(value = "size", defaultValue = "10") int size,Model model) {
-// List<UserDto> users = userService.getAllUsers();
-// UserFilterDto userFilterDto = new UserFilterDto();
-// model.addAttribute("userFilterDto", userFilterDto);
-// model.addAttribute("users", users);
-// model.addAttribute("title", "List Users");
-// model.addAttribute("content", PATH + "/list.html");
-// return LAYOUT;
-// }

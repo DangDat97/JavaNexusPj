@@ -10,7 +10,91 @@
     <link rel="stylesheet" href="/client/css/animations.css">
     <link rel="stylesheet" href="/client/css/font-awesome.css">
     <link rel="stylesheet" href="/client/css/main.css" class="color-switcher-link">
+    <link rel="stylesheet" href="/client/css/shop.css">
     <script src="/client/js/modernizr-2.6.2.min.js"></script>
+    <style>
+        .fade {
+            opacity: 1;
+            transition: opacity 5s ease-in-out;
+        }
+    
+        .hide {
+            opacity: 0;
+        }
+    
+        #filter-user {
+            display: none;
+            opacity: 0;
+            height: 0;
+            transition: opacity 1s ease-in-out, height 1.5s;
+        }
+    
+        #filter-user.show {
+            display: block;
+            opacity: 1;
+            height: auto;
+        }
+    
+        .fixed-element {
+            position: fixed;
+            right: 0;
+            top: 7%;
+            margin: 20px;
+            /* Optional: Add some margin if needed */
+            z-index: 1000;
+            /* Ensure it stays on top of other elements */
+        }
+    
+        @keyframes fadeEffect {
+            0% {
+                opacity: 1;
+            }
+    
+            80% {
+                opacity: 1;
+            }
+    
+            100% {
+                opacity: 0;
+            }
+        }
+    
+        @keyframes bounce {
+    
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0px);
+            }
+    
+            40% {
+                transform: translateY(-20px);
+            }
+    
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+    
+        .bounce {
+            display: inline-block;
+            animation: bounce 2.5s infinite, fadeEffect 10s forwards;
+        }
+        .widget_shopping_cart .removeCustom {
+        -webkit-box-ordinal-group: 4;
+        font-size: 20px;
+        left: 100%;
+        line-height: 1.75;
+        margin-top: 8px;
+        -webkit-order: 3;
+        order: 3;
+        position: absolute;
+        top: 0;
+        width: auto;
+    }
+    </style>
 </head>
 
 <body>
@@ -83,8 +167,12 @@
                                         <span class="icon-styled color-main2 fs-14">
                                             <i class="fa fa-user"></i>
                                         </span>
-                                        <span class="small-text">
-                                            <a href="/login">
+                                        <span class="small-text" th:unless="${infoUserLogin != null and !#lists.isEmpty(infoUserLogin)}">
+                                            <a class="hover-main2" href="/login">
+                                                Login in / sign up</a>
+                                        </span>
+                                        <span class="small-text" th:if="${infoUserLogin != null and !#lists.isEmpty(infoUserLogin)}">
+                                            <a class="hover-main2" href="/Account/Dashboard" th:text="${infoUserLogin.fullName}">
                                                 Login in / sign up</a>
                                         </span>
                                     </span>
@@ -116,8 +204,8 @@
                                     
                                         <nav class="top-nav">
                                             <ul class="nav sf-menu">
-                                    
-                                    
+                                        
+                                        
                                                 <li class="active">
                                                     <a href="/">Home</a>
                                                 </li>
@@ -130,42 +218,32 @@
                                                 <li>
                                                     <a href="/Booking">Booking</a>
                                                 </li>
-                                    
+                                        
                                                 <li>
                                                     <a href="/Shop">Shop</a>
                                                     <ul>
                                                         <li th:each="category : ${categories}">
-                                                            <a th:href="@{/shop/category/{id}(id=${category.id})}" th:text="${category.name}"></a>
+                                                            <a th:href="@{/Shop/Category/{id}(id=${category.id})}" th:text="${category.name}"></a>
                                                         </li>
                                                     </ul>
                                                 </li>
-                                    
-                                    
+                                        
+                                        
                                                 <!-- blog -->
-                                                <li>
-                                                    <a href="/Dashboard">Acount</a>
+                                                <li th:if="${infoUserLogin != null and !#lists.isEmpty(infoUserLogin)}">
+                                                    <a href="/Dashboard">Account</a>
                                                     <ul>
-                                    
-                                                        <li>
-                                                            <a href="/Cart">Cart</a>
-                                                        </li>
                                                         <li>
                                                             <a href="/Account/Dashboard">Dashboard</a>
                                                         </li>
                                                         <li>
-                                                            <a href="/Account/Address">Addresses</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/Account/AddressEdit">AddressesEdit</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/Account/Order">Order</a>
+                                                            <a href="/Account/Details">Edit User</a>
                                                         </li>
                                                         <li>
                                                             <a href="/Account/Orders">Orders</a>
                                                         </li>
-                                    
-                                    
+                                        
+                                        
                                                     </ul>
                                                 </li>
                                                 <!-- eof blog -->
@@ -181,25 +259,12 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li>
-                                                    <a>Admin</a>
-                                                    <ul>
-                                                        <li>
-                                                            <a href="/Admin/Dashboard">Admin
-                                                                Index</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/logout">Check
-                                                                Out</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
                                                 <!-- eof contacts -->
                                                 <!-- eof features -->
-                                    
+                                        
                                             </ul>
-                                    
-                                    
+                                        
+                                        
                                         </nav>
                                     
                                         <!--hidding includes on small devices. They are duplicated in topline-->
@@ -236,31 +301,31 @@
                                     <nav class="mainmenu_side_wrapper">
                                         <ul class="nav menu-click">
                                             <li>
-                                                <a href="faq.html">
+                                                <a href="/">
                                                     <i class="color-main7 fa fa-question-circle"></i>
                                                     FAQ
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="booking-form.html">
+                                                <a href="/Booking">
                                                     <i class="color-main7 fa fa-paper-plane"></i>
                                                     Submit a ticket
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="terms_of_use.html">
+                                                <a href="/">
                                                     <i class="color-main7 fa fa-rocket"></i>
                                                     Terms Of Use
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="availability-map.html">
+                                                <a href="/">
                                                     <i class="color-main7 fa fa-file-text-o"></i>
                                                     Terms of Service
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="contact.html">
+                                                <a href="/">
                                                     <i class="color-main7 fa fa-phone"></i>
                                                     call me back
                                                 </a>
@@ -467,13 +532,57 @@
 
         </div><!-- eof #box_wrapper -->
     </div><!-- eof #canvas -->
+    <div class="example-alerts fixed-element">
+        <div class="gy-4">
+            <div class="example-alert bounce fade-animation" th:if="${session['message.success']}">
+                <div class="alert alert-pro alert-success d-flex">
+                    <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
+                    <div class="alert-text">
+                        <h6>Notification</h6>
+                        <p th:text="${session['message.success']}">Thanks for your deposit. Now you can see your transaction
+                            history. Your
+                            account has been updated accordingly.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="example-alert bounce fade-animation" th:if="${session['message.error']}">
+                <div class="alert alert-pro alert-danger d-flex">
+                    <div class="alert-text">
+                        <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
+                        <h6>Notification</h6>
+                        <p th:text="${session['message.error']}">Your order has been cancelled due to received your payment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+        </div>
+    </div>
+    <script> 
+        document.addEventListener('DOMContentLoaded', function () { 
+            var currentPath = window.location.pathname; 
+            var navLinks = document.querySelectorAll('.woocommerce-MyAccount-navigation a'); 
+            navLinks.forEach(function (link) { 
+                if (link.getAttribute('href') === currentPath) { 
+                        link.parentElement.classList.add('is-active');
+                     }
+                     }); 
+                    }); 
+        </script>
 
+        <script> function toggleCollapse() { 
+            var collapsedDivs = document.getElementById('collapsedDivs'); 
+            if (collapsedDivs.classList.contains('open')) {
+                 collapsedDivs.classList.remove('open');
+                  document.querySelector('.btn').textContent = 'Show More'; 
+                  } else 
+                  { collapsedDivs.classList.add('open'); 
+                  document.querySelector('.btn').textContent = 'Show Less'; 
+                  } } 
+                  </script>
 
     <script src="/client/js/compressed.js"></script>
     <script src="/client/js/main.js"></script>
-    <script src="/client/js/switcher.js"></script>
-
-    <!-- Google Map Script -->
 
 
 </body>

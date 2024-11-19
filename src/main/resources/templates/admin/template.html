@@ -101,7 +101,7 @@
                         <div class="nk-sidebar-menu">
                             <ul class="nk-menu">
                                 <li class="nk-menu-item">
-                                    <a th:href="@{/}" class="nk-menu-link">
+                                    <a th:href="@{/Admin/Dashboard}" class="nk-menu-link">
                                         <span class="nk-menu-icon">
                                             <em class="icon ni ni-home-fill"></em>
                                         </span>
@@ -109,7 +109,7 @@
                                     </a>
                                 </li>
                                 <li class="nk-menu-item has-sub ">
-                                    <a th:href="@{/}" class="nk-menu-link nk-menu-toggle">
+                                    <a th:href="@{/Admin/Users}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon">
                                             <em class="icon ni ni-users-fill"></em>
                                         </span>
@@ -117,39 +117,59 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item ">
-                                            <a th:href="@{/user/create}" class="nk-menu-link">
-                                                <span class="nk-menu-text">Create</span>
-                                            </a>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a th:href="@{/user/index}" class="nk-menu-link">
+                                            <a th:href="@{/Admin/Users}" class="nk-menu-link">
                                                 <span class="nk-menu-text">User List</span>
                                             </a>
                                         </li>
+                                        <li class="nk-menu-item">
+                                            <a th:href="@{/Admin/Users/Add}" class="nk-menu-link">
+                                                <span class="nk-menu-text">User Add</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub ">
-                                    <a th:href="@{/}" class="nk-menu-link nk-menu-toggle">
+                                    <a th:href="@{/Admin/Category}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon">
-                                            <em class="icon ni ni-user-list-fill"></em>
+                                            <em class="icon ni ni-grid-alt-fill"></em>
                                         </span>
-                                        <span class="nk-menu-text">Customers</span>
+                                        <span class="nk-menu-text">Category</span>
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
-                                            <a th:href="@{/}" class="nk-menu-link">
-                                                <span class="nk-menu-text">Customer List</span>
+                                            <a th:href="@{/Admin/Category}" class="nk-menu-link">
+                                                <span class="nk-menu-text">Category List</span>
                                             </a>
                                         </li>
                                         <li class="nk-menu-item ">
-                                            <a th:href="@{/demo2/customer-details.html}" class="nk-menu-link">
-                                                <span class="nk-menu-text">Customer Details</span>
+                                            <a th:href="@{/Admin/Category/Add}" class="nk-menu-link">
+                                                <span class="nk-menu-text">Category Add</span>
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub ">
-                                    <a th:href="@{/}" class="nk-menu-link nk-menu-toggle">
+                                    <a th:href="@{/Admin/Distributors}" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon">
+                                            <em class="icon ni ni-grid-alt-fill"></em>
+                                        </span>
+                                        <span class="nk-menu-text">Distributors</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a th:href="@{/Admin/Distributors}" class="nk-menu-link">
+                                                <span class="nk-menu-text">Distributors List</span>
+                                            </a>
+                                        </li>
+                                        <li class="nk-menu-item ">
+                                            <a th:href="@{/Admin/Distributors/Add}" class="nk-menu-link">
+                                                <span class="nk-menu-text">Distributors Add</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nk-menu-item has-sub ">
+                                    <a th:href="@{/Admin/Orders}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon">
                                             <em class="icon ni ni-cc-alt2-fill"></em>
                                         </span>
@@ -157,14 +177,14 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item ">
-                                            <a th:href="@{/order/index}" class="nk-menu-link">
-                                                <span class="nk-menu-text">Order List - Default</span>
+                                            <a th:href="@{/Admin/Orders}" class="nk-menu-link">
+                                                <span class="nk-menu-text">Order List</span>
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub ">
-                                    <a th:href="@{/}" class="nk-menu-link nk-menu-toggle">
+                                    <a th:href="@{/Admin/Invoice}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon">
                                             <em class="icon ni ni-file-docs"></em>
                                         </span>
@@ -172,19 +192,14 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item ">
-                                            <a th:href="@{/demo2/invoice-list.html}" class="nk-menu-link">
+                                            <a th:href="@{/Admin/Invoice}" class="nk-menu-link">
                                                 <span class="nk-menu-text">Invoice List</span>
-                                            </a>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a th:href="@{/demo2/invoice-details.html}" class="nk-menu-link">
-                                                <span class="nk-menu-text">Invoice Details</span>
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub">
-                                    <a th:href="@{/}" class="nk-menu-link nk-menu-toggle">
+                                    <a th:href="@{/Admin/Products}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon">
                                             <em class="icon ni ni-card-view"></em>
                                         </span>
@@ -192,21 +207,41 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
-                                            <a th:href="@{/product/create}" class="nk-menu-link">
-                                                <span class="nk-menu-text">Product Card</span>
+                                            <a th:href="@{/Admin/Products}" class="nk-menu-link">
+                                                <span class="nk-menu-text">Product List</span>
                                             </a>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <a th:href="@{/product/index}" class="nk-menu-link">
-                                                <span class="nk-menu-text">Product List</span>
+                                            <a th:href="@{/Admin/Products/Add}" class="nk-menu-link">
+                                                <span class="nk-menu-text">Product Add</span>
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub">
-                                    <a th:href="@{/logout}" class="nk-menu-link nk-menu-toggle">
+                                    <a th:href="@{/Admin/Booking}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon">
                                             <em class="icon ni ni-card-view"></em>
+                                        </span>
+                                        <span class="nk-menu-text">Booking</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a th:href="@{/Admin/Booking}" class="nk-menu-link">
+                                                <span class="nk-menu-text">Booking List</span>
+                                            </a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a th:href="@{/Admin/Booking/Add}" class="nk-menu-link">
+                                                <span class="nk-menu-text">Booking Add</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nk-menu-item has-sub">
+                                    <a th:href="@{/logout}" class="nk-menu-link">
+                                        <span class="nk-menu-icon">
+                                            <em class="icon ni ni-signout"></em>
                                         </span>
                                         <span class="nk-menu-text">Logout</span>
                                     </a>
@@ -321,7 +356,7 @@
 
             // Fade out the element after 5 seconds
             setTimeout(() => fadeOut(alertElement), 5000);
-        });s
+        });
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -343,11 +378,69 @@
                     }
                 });
         });
+        
     </script>
+    <script>
+        function showDeleteConfirmation(userId) {
+            Swal.fire({
+                title: 'Bạn thực sự muốn xoá ngươi dùng này?',
+                showCancelButton: true,
+                confirmButtonText: 'Đồng ý',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // console.log("User ID to delete: " + userId);
+                    $.ajax({
+                        url: '/Admin/'+/*[[${urlDelete}]]*/+'/Delete/' + userId,
+                        type: 'DELETE',
+                        success: function (response) {
+                            // console.log(response);
+                            if(response){
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Đã xoá thành công!',
+                                text: 'Người dùng đã được xoá thành công.',
+                                confirmButtonText: 'OK'
+                            }).then(() => {
+                                // Remove the user from the page
+                                $('#user-row-' + userId).remove();
+                            });
+                            } else { 
+                                Swal.fire({ 
+                                    icon: 'error', 
+                                    title: 'Lỗi!', 
+                                    text: 'Đã xảy ra lỗi khi xoá người dùng.', 
+                                    confirmButtonText: 'OK' 
+                                }); 
+                            }
+                        },
+                        error: function () {
+                            // console.log(response);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Lỗi!',
+                                text: 'Đã xảy ra lỗi khi xoá người dùng.',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+    <!-- <script> Dropzone.options.userDropzone = { paramName: 'file', // Tên tham số truyền lên server 
+    maxFilesize: 2, // Giới hạn kích thước tệp (MB) 
+    acceptedFiles: 'image/*', // Giới hạn loại tệp được tải lên 
+    dictDefaultMessage: 'Drag and drop an image here or click to upload', 
+    autoProcessQueue: false, init: function() { var myDropzone = this; // Khi form submit, thêm dữ liệu form vào Dropzone 
+        document.querySelector("form").addEventListener("submit", function(e) { e.preventDefault(); e.stopPropagation(); var fullName = document.querySelector('input[name="fullName"]').value; var email = document.querySelector('input[name="email"]').value; myDropzone.on("sending", function(file, xhr, formData) { formData.append("fullName", fullName); formData.append("email", email); }); myDropzone.processQueue(); // Bắt đầu tải lên 
+    }); this.on("success", function(file, response) { console.log("File uploaded successfully"); alert("User uploaded successfully"); }); this.on("error", function(file, response) { console.error("Error uploading file"); alert("Error uploading user"); }); } }; </script> -->
+
     <script th:src="@{/admin/js/bundle.js?ver=3.2.3}"></script>
     <script th:src="@{/admin/js/scripts.js?ver=3.2.3}"></script>
     <script th:src="@{/admin/js/demo-settings.js?ver=3.2.3}"></script>
     <script th:src="@{/admin/js/chart-ecommerce.js?ver=3.2.3}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>

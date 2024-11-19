@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DistributorRepository extends JpaRepository<Distributor, Long> {
-    // Custom query methods can be added here if needed
+
+    Distributor findByName(String name);
 }

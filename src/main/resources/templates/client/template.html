@@ -4,12 +4,11 @@
 <head>
     <title th:text="${title}">Title</title>
     <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="/client/css/bootstrap.min.css">
     <link rel="stylesheet" href="/client/css/animations.css">
     <link rel="stylesheet" href="/client/css/font-awesome.css">
-    <link rel="stylesheet" href="/client/css/main.css" class="color-switcher-link">
+    <link rel="stylesheet" href="/client/css/main.css" >
+    <link rel="stylesheet" th:href="@{/client/css/shop.css}" >
     <script src="/client/js/modernizr-2.6.2.min.js"></script>
 </head>
 
@@ -83,8 +82,12 @@
                                         <span class="icon-styled color-main2 fs-14">
                                             <i class="fa fa-user"></i>
                                         </span>
-                                        <span class="small-text">
+                                        <span class="small-text" th:if="${infoUserLogin != null}">
                                             <a class="hover-main2" href="/login">
+                                                Login in / sign up</a>
+                                        </span>
+                                        <span class="small-text" th:if="${infoUserLogin != null and !#lists.isEmpty(infoUserLogin)}">
+                                            <a class="hover-main2" href="/Account/Dashboard" th:text="${infoUserLogin.fullName}">
                                                 Login in / sign up</a>
                                         </span>
                                     </span>
@@ -125,14 +128,14 @@
                                                 <a href="/About">About</a>
                                             </li>
                                             <li>
-                                                <a href="/Booking">About</a>
+                                                <a href="/Booking">Booking</a>
                                             </li>
 
                                             <li>
                                                 <a href="/Shop">Shop</a>
                                                 <ul>
                                                     <li th:each="category : ${categories}">
-                                                        <a th:href="@{/shop/category/{id}(id=${category.id})}"
+                                                        <a th:href="@{/Shop/Category/{id}(id=${category.id})}"
                                                             th:text="${category.name}"></a>
                                                     </li>
                                                 </ul>
@@ -140,13 +143,9 @@
 
 
                                             <!-- blog -->
-                                            <li>
+                                            <li th:if="${infoUserLogin != null and !#lists.isEmpty(infoUserLogin)}">
                                                 <a href="/Dashboard">Acount</a>
                                                 <ul>
-
-                                                    <li>
-                                                        <a href="/Cart">Cart</a>
-                                                    </li>
                                                     <li>
                                                         <a href="/Account/Dashboard">Dashboard</a>
                                                     </li>
@@ -176,19 +175,6 @@
                                                     </li>
                                                     <li>
                                                         <a href="/Checkout">Check Out</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a>Admin</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="/Admin/Dashboard">Admin
-                                                            Index</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="/logout">Check
-                                                            Out</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -558,9 +544,6 @@
     <script src="/client/js/compressed.js"></script>
     <script src="/client/js/main.js"></script>
     <script src="/client/js/switcher.js"></script>
-
-    <!-- Google Map Script -->
-
 
 </body>
 

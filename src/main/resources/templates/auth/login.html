@@ -36,7 +36,7 @@
                                         <h5 class="nk-block-title">Sign-In</h5>
                                         <div class="nk-block-des">
                                             <div th:if="${param.error}">
-                                                <p style="color:red;" th:text="'Thông tin đăng nhập không chính xác!'">
+                                                <p style="color:red;" th:text="'Incorrect login information!'">
                                                 </p>
                                             </div>
                                             <div th:if="${param.logout}">
@@ -56,8 +56,7 @@
                                             <input type="email" class="form-control form-control-lg" id="email"
                                                 name="email" placeholder="Enter your email address" required
                                                 autocomplete="email">
-                                            <input type="hidden" name="${_csrf.parameterName}"
-                                                th:value="${_csrf.token}" />
+                                            
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -133,7 +132,7 @@
                                             <!-- ... (slider items remain unchanged) ... -->
                                         </div>
                                     </div>
-                                    <ul class="slick-dots" style="" role="tablist">
+                                    <ul class="slick-dots" role="tablist">
                                         <li class="" role="presentation"><button type="button" role="tab"
                                                 id="slick-slide-control00" aria-controls="slick-slide00"
                                                 aria-label="1 of 3" tabindex="-1">1</button></li>

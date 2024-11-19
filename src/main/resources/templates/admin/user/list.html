@@ -7,7 +7,10 @@
                         <div class="nk-block-head-content">
                             <h3 class="nk-block-title page-title" th:text="${title}">User Lists</h3>
                             <div class="nk-block-des text-soft">
-                                <p>You have total 2,595 users.</p>
+                                <p>You have total 
+                                    <span th:text="${countUser}">2,595</span>
+                                    
+                                     users.</p>
                             </div>
                         </div>
                         <div class="nk-block-head-content">
@@ -45,8 +48,7 @@
                                     <h5 class="card-title" >Filter User</h5>
                                 </div>
                 
-                                <form method="get" th:action="@{/Admin/Users/Filter}" th:object="${userFilterDto}"
-                                    enctype="multipart/form-data">
+                                <form method="get" th:action="@{/Admin/Users/Filter}" th:object="${userFilterDto}">
                                     <div class="row g-4">
                                         <div class="col-lg-4">
                                             <div class="form-group"><label class="form-label" for="fullName">Full Name</label>
@@ -123,11 +125,43 @@
                                 <span class="sub-text">Act</span>
                             </div>
                         </div>
-                        <div class="nk-tb-item" th:each="user : ${users}">
+                        <div class="nk-tb-item" th:unless="${users != null and !#lists.isEmpty(users)}">
+                            <div class="nk-tb-col">
+                                <div class="custom-control custom-control-sm custom-checkbox notext">
+                                </div>
+                            </div>
+                            <div class="nk-tb-col">
+                                <div class="custom-control custom-control-sm custom-checkbox notext">
+                                </div>
+                            </div>
+                            <div class="nk-tb-col">
+                                <div class="custom-control custom-control-sm custom-checkbox notext">
+                                </div>
+                            </div>
+                            <div class="nk-tb-col">
+                                <div class="custom-control custom-control-sm ">
+                                   
+                                </div>
+                            </div>
+                            <div class="nk-tb-col">
+                                <div class="custom-control custom-control-sm custom-checkbox notext">
+                                    <span>There is no data for the information you are looking for.</span>
+                                </div>
+                            </div>
+                            <div class="nk-tb-col">
+                                <div class="custom-control custom-control-sm custom-checkbox notext">
+                                </div>
+                            </div>
+                            <div class="nk-tb-col">
+                                <div class="custom-control custom-control-sm custom-checkbox notext">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nk-tb-item" th:each="user : ${users}" th:id="'user-row-'+${user.id}">
                             <div class="nk-tb-col nk-tb-col-check">
                                 <div class="custom-control custom-control-sm custom-checkbox notext">
-                                    <input type="checkbox" class="custom-control-input" id="${user.id}">
-                                    <label class="custom-control-label" for="${user.id}"></label>
+                                    <input type="checkbox" class="custom-control-input" th:id="${user.id}">
+                                    <label class="custom-control-label" th:for="${user.id}"></label>
                                 </div>
                             </div>
                             <div class="nk-tb-col">
@@ -178,15 +212,14 @@
                                         </a>
                                     </li>
                                     <li class="nk-tb-action-hidden">
-                                        <a th:href="@{/Admin/Users/Edit/{id}(id=${user.id})}" class="btn btn-trigger btn-icon"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" aria-label="View" data-bs-original-title="View">
+                                        <a th:href="@{/Admin/Users/Detail/{id}(id=${user.id})}" class="btn btn-trigger btn-icon eg-swal-error"
+                                            data-bs-original-title="View">
                                             <em class="icon ni ni-eye-alt-fill"></em>
                                         </a>
                                     </li>
                                     <li class="nk-tb-action-hidden">
-                                        <!-- th:href="@{/Admin/Users/Delete/{id}(id=${user.id})}" -->
-                                        <a  class="btn btn-trigger btn-icon eg-swal-error" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete">
+                                        <a href="javascript:void(0);" th:attr="onclick=|showDeleteConfirmation(${user.id})|"
+                                            class="btn btn-trigger btn-icon eg-swal-error" data-bs-original-title="View">
                                             <em class="icon ni ni-trash-fill"></em>
                                         </a>
                                     </li>

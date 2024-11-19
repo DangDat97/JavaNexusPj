@@ -3,57 +3,58 @@
         <div class="nk-content-inner">
             <div class="nk-content-body">
                 <div class="components-preview wide-md mx-auto">
-                    <div class="nk-block-head nk-block-head-lg wide-sm">
+                    <div class="nk-block-head nk-block-head-lg">
                         <div class="nk-block-head-content">
-                            <div class="nk-block-head-sub">
-                                <a class="back-to" th:href="@{/Admin/Users}">
-                                    <em class="icon ni ni-arrow-left"></em>
-                                    <span>List User</span>
-                                </a>
+                            <div class="toggle-wrap nk-block-tools-toggle">
+                                <div class="toggle-expand-content">
+                                    <ul class="nk-block-tools g-3" style="justify-content: center;">
+                                        <li>
+                                            <a href="/Admin/Product" class="btn btn-white btn-outline-light"><em
+                                                    class="icon ni ni-list-index"></em><span>List Product</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Admin/Order" class="btn btn-white btn-outline-light">
+                                                <em class="icon ni ni-cc-alt2-fill"></em><span>List Order</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Admin/Booking" class="btn btn-white btn-outline-light">
+                                                <em class="icon ni ni-list-thumb-alt-fill"></em><span>List Categories</span>
+                                            </a>
+                                        </li>
+                                        <!-- <li class="nk-block-tools-opt">
+                                                                    <a href="#" class="btn btn-icon btn-primary d-md-none">
+                                                                        <em class="icon ni ni-plus"></em>
+                                                                    </a>
+                                                                    <a href="/Admin/Users/Add" class="btn btn-primary d-none d-md-inline-flex">
+                                                                        <em class="icon ni ni-plus"></em>
+                                                                        <span>Add</span>
+                                                                    </a>
+                                                                </li> -->
+                                    </ul>
+                                </div>
                             </div>
-                            <h2 class="nk-block-title fw-normal">Edit User</h2>
                         </div>
                     </div>
                     <div class="nk-block nk-block-lg">
                         <div class="card card-bordered card-preview">
                             <div class="card-inner">
                                 <div class="preview-block">
-                                    <!-- <form action="#" th:action="@{/Admin/Users/Edit/{id}(id=${userDto.id})}" method="post" th:object="${userDto}">
-                                        <label for="fullName">Full Name:</label>
-                                        <input type="text" id="fullName" th:field="*{fullName}" required><br>
-                                    
-                                        <label for="email">Email:</label>
-                                        <input type="email" id="email" th:field="*{email}" required><br>
-                                    
-                                        <label for="password">Password:</label>
-                                        <input type="password" id="password" th:field="*{password}"><br>
-                                    
-                                        <label for="address">Address:</label>
-                                        <input type="text" id="address" th:field="*{address}"><br>
-                                    
-                                        <label for="phone">Phone:</label>
-                                        <input type="text" id="phone" th:field="*{phone}" pattern="(84|0[3|5|7|8|9])+([0-9]{8})" required><br>
-                                    
-                                        <label for="image">Image:</label>
-                                        <input type="file" id="image" th:field="*{image}"><br>
-                                    
-                                        <label for="note">Note:</label>
-                                        <textarea id="note" th:field="*{note}" maxlength="1000"></textarea><br>
-                                    
-                                        <button type="submit">Update User</button>
-                                    </form> -->
-<!-- th:action="@{/Admin/users/edit/{id}(id=${userDto.id})}" -->
-                                    <form method="post" th:object="${user}" enctype="multipart/form-data">
+                                    <div class="card-head">
+                                        <h5 class="card-title" th:text="${title}">Customer Info</h5>
+                                    </div>
+                                    <form method="post" th:action="@{/Admin/Products/Edit/{id}(id=${productDto.id})}" th:object="${productDto}" enctype="multipart/form-data">
                                         <div class="row g-4">
                                             <div class="col-lg-6">
-                                                <div class="form-group"><label class="form-label" for="fullName">Full Name</label>
-                                                    <div class="form-control-wrap"><input type="text" class="form-control" th:field="*{fullName}"></div>
+                                                <div class="form-group"><label class="form-label" for="name">Name</label>
+                                                    <div class="form-control-wrap"><input type="text" class="form-control" th:field="*{name}"></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
-                                                <div class="form-group"><label class="form-label" for="email">Email address</label>
+                                                <div class="form-group"><label class="form-label" for="price">Price</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" class="form-control" id="email" th:field="*{email}">
+                                                        <input type="number" class="form-control" id="price" th:field="*{price}">
                                                         <div data-lastpass-icon-root=""
                                                             style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
                                                         </div>
@@ -61,9 +62,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
-                                                <div class="form-group"><label class="form-label" for="password">Password</label>
+                                                <div class="form-group"><label class="form-label" for="description">Description</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" class="form-control" id="password" th:field="*{password}">
+                                                        <input type="text" class="form-control" id="description" th:field="*{description}">
                                                         <div data-lastpass-icon-root=""
                                                             style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
                                                         </div>
@@ -71,35 +72,82 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
-                                                <div class="form-group"><label class="form-label" for="phone">Phone No</label>
+                                                <div class="form-group"><label class="form-label" for="detail">Detail</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" class="form-control" id="phone" th:field="*{phone}">
+                                                        <input type="text" class="form-control" id="detail" th:field="*{detail}">
+                                                        <input type="text" hidden class="form-control" id="status" th:field="*{status}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group"><label class="form-label">Category</label>
+                                                    <div class="form-control-wrap">
+                                                        <select class="form-select js-select2 select2-hidden-accessible"
+                                                            data-placeholder="Select Multiple options" data-select2-id="9" tabindex="-1" aria-hidden="true"
+                                                            name="categories" multiple="multiple" th:field="*{categories}">
+                                                            
+                                                            <option class="" th:each="category : ${categories}" th:value="${category.id}"
+                                                                th:text="${category.name}"
+                                                                th:checked="${#lists.contains(selectedCategories, category)}"
+                                                                >
+                                                            </option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="form-label" for="address">Address</label>
+                                                    <label class="form-label" for="distributor">Distributor</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" class="form-control" id="address" th:field="*{address}">
+                                                        <select class="form-control" name="distributor" th:field="*{distributor}">
+                                                            <option class="" th:each="distributor : ${distributors}" th:value="${distributor.id}"
+                                                                th:text="${distributor.name}">
+                                                            </option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- <div class="col-lg-6">
+                                                                                    <div class="form-group">
+                                                                                        <label class="form-label" for="category">Category</label>
+                                                                                        <div class="form-control-wrap">
+                                                                                            <div class="form-control-select">
+                                                                                                <select class="form-control" name="categories" multiple="multiple" th:field="*{categories}">
+                                                                                                    <option class="" th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}">
+                                                                                                        </option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div> -->
                                             <div class="col-lg-6">
-                                                <div class="form-group"><label class="form-label" for="phone">image</label>
+                                                <div class="form-group"><label class="form-label" for="image">Image [Avatar]</label>
                                                     <div class="form-control-wrap">
                                                         <input type="file" class="form-control" id="image" th:field="*{image}">
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- <div class="col-sm-6"><label class="form-label">Image [Avatar]</label>
+                                                                                    <div class="upload-zone dropzone dz-clickable" data-max-files="1" id="userDropzone">
+                                                                                        <div class="dz-message" data-dz-message=""><span class="dz-message-text">Drag and drop file</span><span
+                                                                                                class="dz-message-or">or</span><button class="btn btn-primary">SELECT</button></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-6"><label class="form-label">Images Detail</label>
+                                                                                    <div class="upload-zone dropzone dz-clickable" data-accepted-files="image/*" data-max-files="5">
+                                                                                        <div class="dz-message" data-dz-message=""><span class="dz-message-text">Drag and drop file</span><span
+                                                                                                class="dz-message-or">or</span><button class="btn btn-primary">SELECT</button></div>
+                                                                                    </div>
+                                                                                </div> -->
+                                    
                                             <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="form-label" for="note">Note</label>
+                                                <div class="form-group"><label class="form-label" for="phone">Images Detail</label>
                                                     <div class="form-control-wrap">
-                                                        <textarea id="note" class="form-control" th:field="*{note}" maxlength="1000"></textarea>
+                                                        <input type="file" class="form-control" id="images" th:field="*{images}" multiple="multiple">
                                                     </div>
                                                 </div>
                                             </div>
+                                    
                                             <div class="col-12">
                                                 <div class="form-group"><button type="submit" class="btn btn-lg btn-primary">Save User</button>
                                                 </div>

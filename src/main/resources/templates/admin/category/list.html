@@ -6,9 +6,6 @@
                     <div class="nk-block-between">
                         <div class="nk-block-head-content">
                             <h3 class="nk-block-title page-title" th:text="${title}"></h3>
-                            <div class="nk-block-des text-soft">
-                                <p>You have total users.</p>
-                            </div>
                         </div>
                         <div class="nk-block-head-content">
                             <div class="toggle-wrap nk-block-tools-toggle">
@@ -17,23 +14,15 @@
                                     <em class="icon ni ni-more-v"></em>
                                 </a>
                                 <div class="toggle-expand-content" >
-                                    <ul class="nk-block-tools g-3">
+                                    <ul class="nk-block-tools g-3" style="justify-content: center;">
                                         <li>
-                                            <div class="form-control-wrap">
-                                                <div class="form-icon form-icon-right">
-                                                    <em class="icon ni ni-search"></em>
-                                                </div>
-                                                <input type="text" class="form-control" id="default-04"
-                                                    placeholder="Search by name">
-                                            </div>
-                                        </li>
-                                        <li class="nk-block-tools-opt">
-                                            <a href="#" class="btn btn-icon btn-primary d-md-none">
-                                                <em class="icon ni ni-plus"></em>
+                                            <a href="/Admin/Products" class="btn btn-white btn-outline-light">
+                                                <em class="icon ni ni-cc-alt2-fill"></em><span>List Product</span>
                                             </a>
-                                            <a href="/Admin/Users/Add" class="btn btn-primary d-none d-md-inline-flex">
-                                                <em class="icon ni ni-plus"></em>
-                                                <span>Add</span>
+                                        </li>
+                                        <li>
+                                            <a href="/Admin/Category" class="btn btn-white btn-outline-light">
+                                                <em class="icon ni ni-plus"></em><span>Add Category</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -48,8 +37,8 @@
                             <div class="card card-bordered card-preview">
                                 
                                 <div class="card-inner">
-                                    <span class="preview-title-lg overline-title">Add Category</span>
-                                    <form method="post" th:action="@{/Admin/Category/add}" th:object="${Category}">
+                                    <span class="preview-title-lg overline-title"><span th:text="${urlForm.substring(0,urlForm.indexOf('/'))}"></span> Category</span>
+                                    <form method="post" th:action="@{'/Admin/Category/'+${urlForm}}" th:object="${category}">
                                         <div class="row g-4">
                                             <div class="col-lg-6">
                                                 <div class="form-group"><label class="form-label" for="Name">Name</label>
@@ -82,11 +71,11 @@
                                         <span class="sub-text">Act</span>
                                     </div>
                                 </div>
-                                <div class="nk-tb-item" th:each="category : ${categories}">
+                                <div class="nk-tb-item" th:each="category : ${categories}" th:id="'user-row-'+${category.id}">
                                     <div class="nk-tb-col nk-tb-col-check">
                                         <div class="custom-control custom-control-sm custom-checkbox notext">
-                                            <input type="checkbox" class="custom-control-input" id="${user.id}">
-                                            <label class="custom-control-label" for="${user.id}"></label>
+                                            <input type="checkbox" class="custom-control-input" th:id="${category.id}">
+                                            <label class="custom-control-label" th:for="${category.id}"></label>
                                         </div>
                                     </div>
                                     <div class="nk-tb-col tb-col-mb">
@@ -97,20 +86,14 @@
                                     <div class="nk-tb-col nk-tb-col-tools">
                                         <ul class="nk-tb-actions gx-1">
                                             <li class="nk-tb-action-hidden">
-                                                <a class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                <a th:href="@{/Admin/Category/Edit/{id}(id=${category.id})}" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top"
                                                     aria-label="Edit" data-bs-original-title="Edit">
                                                     <em class="icon ni ni-edit-alt-fill"></em>
                                                 </a>
                                             </li>
                                             <li class="nk-tb-action-hidden">
-                                                <a class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    aria-label="View" data-bs-original-title="View">
-                                                    <em class="icon ni ni-eye-alt-fill"></em>
-                                                </a>
-                                            </li>
-                                            <li class="nk-tb-action-hidden">
-                                                <a class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    aria-label="Delete" data-bs-original-title="Delete">
+                                                <a href="javascript:void(0);" th:attr="onclick=|showDeleteConfirmation(${category.id})|"
+                                                    class="btn btn-trigger btn-icon eg-swal-error" data-bs-original-title="View">
                                                     <em class="icon ni ni-trash-fill"></em>
                                                 </a>
                                             </li>
@@ -123,7 +106,7 @@
                             
                             
                             </div>
-                            <div class="card">
+                            <!-- <div class="card">
                                 <div class="card-inner">
                                     <div class="nk-block-between-md g-3">
                                         <div class="g">
@@ -155,7 +138,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
                     </div>

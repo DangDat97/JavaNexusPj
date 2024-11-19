@@ -8,8 +8,8 @@
                     <header class="entry-header mb-30">
                         <h1 class="entry-title">My account</h1>
                         <span class="edit-link">
-                            <a class="post-edit-link" href="#">
-                                Edit
+                            <a class="post-edit-link" href="/Account/Details">
+                                Edit User
                                 <span class="screen-reader-text"> "My account"</span>
                             </a>
                         </span>
@@ -17,22 +17,36 @@
                     <div class="entry-content">
                         <div class="woocommerce">
 
-
+                            <nav class="woocommerce-MyAccount-navigation hero-bg p-60">
+                                <ul>
+                                    <li>
+                                        <a href="/Account/Dashboard">Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Account/Orders">Orders</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Account/Details">Account details</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Logout">Logout</a>
+                                    </li>
+                                </ul>
+                            </nav>
                             <div class="woocommerce-MyAccount-content">
 
                                 <p>
-                                    Hello <strong>admin</strong> (not <strong>admin</strong>? <a
-                                        href="shop-account-login.html">
+                                    Hello <strong th:if="${infoUserLogin != null and !#lists.isEmpty(infoUserLogin)}" th:text="${infoUserLogin.fullName}">admin</strong> (not <strong  th:if="${infoUserLogin != null and !#lists.isEmpty(infoUserLogin)}" th:text="${infoUserLogin.fullName}">admin</strong>? <a
+                                        href="/Logout">
                                         Log
                                         out
                                     </a>)
                                 </p>
 
                                 <p>
-                                    From your account dashboard you can view your <a
-                                        href="shop-account-orders.html">recent orders</a>,
-                                    manage your <a href="shop-account-address.html">shipping and billing addresses</a>
-                                    and <a href="shop-account-details.html">edit your password and account details</a>.
+                                    From your account dashboard you can view ,
+                                    manage your <a href="/Orders">shipping and billing addresses</a>
+                                    and <a href="/Details">edit your password and account details</a>.
                                 </p>
 
                             </div>

@@ -9,8 +9,8 @@
                     <header class="entry-header mb-30">
                         <h1 class="entry-title">Account details</h1>
                         <span class="edit-link">
-                            <a class="post-edit-link" href="#">
-                                Edit
+                            <a class="post-edit-link" href="/Account/Details">
+                                Edit User
                                 <span class="screen-reader-text">
                                     "My account"
                                 </span>
@@ -20,78 +20,100 @@
                     <!-- .entry-header -->
                     <div class="entry-content">
                         <div class="woocommerce">
-                            <!-- @await Html.PartialAsync("../Shared/NavClient") -->
+                            <nav class="woocommerce-MyAccount-navigation hero-bg p-60">
+                                <ul>
+                                    <li>
+                                        <a href="/Account/Dashboard">Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Account/Orders">Orders</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Account/Details">Account details</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Logout">Logout</a>
+                                    </li>
+                                </ul>
+                            </nav>
 
 
                             <div class="woocommerce-MyAccount-content">
 
-                                <form class="woocommerce-EditAccountForm edit-account" method="post">
+                                <form  th:action="@{/Account/Details}" th:object="${user}" method="post">
 
-
-                                    <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
-                                        <label for="account_first_name">
-                                            First name <span class="required">*</span>
+                                    <p class="form-row form-row-wide">
+                                        <label for="email">
+                                            Email address <span class="required">*</span>
                                         </label>
-                                        <input type="text"
-                                            class="form-control woocommerce-Input woocommerce-Input--text input-text"
-                                            name="account_first_name" id="account_first_name" value=""
-                                            placeholder="First name">
+                                        <input type="hidden" th:field="*{id}">
+                                        <input type="email" class="form-control" name="email"
+                                            id="email" th:field="*{email}" readonly>
                                     </p>
-                                    <p class="woocommerce-form-row woocommerce-form-row--last form-row form-row-last">
-                                        <label for="account_last_name">
-                                            Last name <span class="required">*</span>
+                                    <p class="form-row ">
+                                        <label for="fullName">
+                                            Full Name <span class="required">*</span>
                                         </label>
                                         <input type="text"
-                                            class="form-control woocommerce-Input woocommerce-Input--text input-text"
-                                            name="account_last_name" id="account_last_name" value=""
-                                            placeholder="Last name">
+                                            class="form-control"
+                                            name="fullName" id="fullName" th:field="*{fullName}"
+                                            placeholder="Full name">
+                                    </p>
+                                    <p class=" form-row ">
+                                        <label for="address">
+                                            Address <span class="required">*</span>
+                                        </label>
+                                        <input type="text"
+                                            class="form-control "
+                                            name="address" id="address"  th:field="*{address}"
+                                            placeholder="Address">
+                                    </p>
+                                    <p class=" form-row ">
+                                        <label for="phone">
+                                            Phone <span class="required">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" name="phone" id="phone"
+                                            th:field="*{phone}" placeholder="Phone">
                                     </p>
                                     <div class="clear">
                                     </div>
 
-                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                        <label for="account_email">
-                                            Email address <span class="required">*</span>
-                                        </label>
-                                        <input type="email"
-                                            class="form-control woocommerce-Input woocommerce-Input--email input-text"
-                                            name="account_email" id="account_email" value="admin@test.com">
-                                    </p>
+                                    
 
                                     <fieldset>
                                         <legend>Password change</legend>
 
                                         <p
-                                            class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                            class="form-row form-row-wide">
                                             <label for="password_current">Current password (leave blank to leave
                                                 unchanged)</label>
                                             <input type="password"
-                                                class="form-control woocommerce-Input woocommerce-Input--password input-text"
+                                                class="form-control"
                                                 name="password_current" id="password_current"
                                                 placeholder="Current password (leave blank to leave unchanged)">
                                         </p>
                                         <p
-                                            class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                            class="form-row form-row-wide">
                                             <label for="password_1">New password (leave blank to leave
                                                 unchanged)</label>
                                             <input type="password"
-                                                class="form-control woocommerce-Input woocommerce-Input--password input-text"
+                                                class="form-control "
                                                 name="password_1" id="password_1"
                                                 placeholder="New password (leave blank to leave unchanged)">
                                         </p>
                                         <p
-                                            class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                            class="form-row form-row-wide">
                                             <label for="password_2">Confirm new password</label>
                                             <input type="password"
-                                                class="form-control woocommerce-Input woocommerce-Input--password input-text"
+                                                class="form-control"
                                                 name="password_2" id="password_2" placeholder="Confirm new password">
                                         </p>
                                     </fieldset>
                                     <div class="clear"></div>
                                     <div class="divider-40 d-none d-lg-block"></div>
                                     <p>
-                                        <button type="submit" class="woocommerce-Button btn btn-maincolor"
-                                            name="save_account_details"><span>Save Changes</span></button>
+                                        <button type="submit" class="btn btn-maincolor"
+                                            ><span>Save Changes</span></button>
                                     </p>
                                 </form>
 
