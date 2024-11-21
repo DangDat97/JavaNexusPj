@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
 import nasuxjava.webnexus.entity.Order;
 import nasuxjava.webnexus.entity.User;
+import nasuxjava.webnexus.entity.Order.OrderStatus;
 import nasuxjava.webnexus.services.OrderService;
 import nasuxjava.webnexus.services.UserService;
 
@@ -119,6 +120,29 @@ public class AcountClient {
         Order order = orderService.getOrderById(id);
         model.addAttribute("order", order);
         model.addAttribute("content", PATH_ACOUNT + "/oder.html");
+        return LAYOUT;
+    }
+
+    @GetMapping("/OrderAgain/{id}")
+    public String handelOrderAgain(@PathVariable Long id, Model model) {
+        model.addAttribute("title", "Order");
+        Order order = orderService.getOrderById(id);
+        orderService.saveOrder(order);
+        model.addAttribute("order", order);
+        model.addAttribute("content", PATH_ACOUNT + "/oder.html");
+        session.setAttribute("message.success", "Reorder successful.");
+        return LAYOUT;
+    }
+
+    @GetMapping("/CancelOrder/{id}")
+    public String handelCancelOrder(@PathVariable Long id, Model model) {
+        model.addAttribute("title", "Order");
+        Order order = orderService.getOrderById(id);
+        order.setStatus(OrderStatus.CANCELLED);
+        orderService.saveOrder(order);
+        model.addAttribute("order", order);
+        model.addAttribute("content", PATH_ACOUNT + "/oder.html");
+        session.setAttribute("message.success", "Order cancellation successful.");
         return LAYOUT;
     }
 

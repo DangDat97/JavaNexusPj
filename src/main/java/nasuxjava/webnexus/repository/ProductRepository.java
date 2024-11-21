@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import nasuxjava.webnexus.entity.Distributor;
 import nasuxjava.webnexus.entity.Product;
-import nasuxjava.webnexus.repository.custom.ProductRepositoryCustom;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -28,18 +27,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>,
 
         // Find products by price range
         List<Product> findByPriceBetween(double minPrice, double maxPrice);
-
-        // Find top N products by rating
-        // @Query("SELECT p FROM Product p ORDER BY p.rating DESC")
-        // List<Product> findTopNProductsByRating(Pageable pageable);
-
-        // Find products by category ID and price range
-        // @Query("SELECT p FROM Product p JOIN p.categories c WHERE c.id = :categoryId
-        // AND p.price BETWEEN:minPrice AND:maxPrice")
-        // List<Product> findByCategoryIdAndPriceRange(@Param("categoryId") Long
-        // categoryId,
-        // @Param("minPrice") double minPrice,
-        // @Param("maxPrice") double maxPrice);
 
         List<Product> findByNameContainingAndStatusAndDistributorAndPriceBetween(
                         String name, Boolean status, Distributor distributor, BigDecimal minPrice, BigDecimal maxPrice);

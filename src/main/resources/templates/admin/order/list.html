@@ -52,100 +52,86 @@
                                 </div>
                             </div>
                             <div class="nk-tb-col">
-                                <span class="sub-text">User</span>
+                                <span class="sub-text">Order</span>
                             </div>
                             <div class="nk-tb-col tb-col-mb">
-                                <span class="sub-text">Ordered</span>
-                            </div>
-                            <div class="nk-tb-col tb-col-md">
-                                <span class="sub-text">Phone</span>
-                            </div>
-                            <div class="nk-tb-col tb-col-lg">
-                                <span class="sub-text">Adress</span>
-                            </div>
-                            <div class="nk-tb-col tb-col-lg">
-                                <span class="sub-text">Last Order</span>
+                                <span class="sub-text">Date</span>
                             </div>
                             <div class="nk-tb-col tb-col-md">
                                 <span class="sub-text">Status</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-lg">
+                                <span class="sub-text">Customer</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-lg">
+                                <span class="sub-text">Purchased</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-md">
+                                <span class="sub-text">Total</span>
                             </div>
                             <div class="nk-tb-col nk-tb-col-tools">
                                 <span class="sub-text">Act</span>
                             </div>
                         </div>
-                        <div class="nk-tb-item" th:each="user : ${users}">
+                        <div class="nk-tb-item" th:each="order : ${orders}">
                             <div class="nk-tb-col nk-tb-col-check">
                                 <div class="custom-control custom-control-sm custom-checkbox notext">
-                                    <input type="checkbox" class="custom-control-input" id="${user.id}">
-                                    <label class="custom-control-label" for="${user.id}"></label>
+                                    <input type="checkbox" class="custom-control-input" id="${order.id}">
+                                    <label class="custom-control-label" for="${order.id}"></label>
                                 </div>
                             </div>
                             <div class="nk-tb-col">
-                                <a asp-action="Details" id="${user.id}">
-                                    <div class="user-card">
-                                        <div class="user-avatar bg-primary"><span>None</span></div>
-                                        <div class="user-avatar">
-                                            <img th:src="@{/admin/images/${user.image}}">
-                                            <!-- th:src="@{/admin/images/logo-dark.png} -->
-                                            <!-- <img src="@Url.Content(" ~/admin/images/"+item.Image)"> -->
-                                        </div>
-                                        <div class="user-info">
-                                            <span class="tb-lead">
-                                                <span th:text="${user.fullName}"></span>
-                                                <span class="dot dot-success d-md-none ms-1" ></span>
-
-                                                <!-- @Html.DisplayFor(modelItem => item.Name) <span class="dot dot-success d-md-none ms-1"></span> -->
-                                            </span>
-                                            <span th:text="${user.email}"></span>
-                                            <!-- <span>@Html.DisplayFor(modelItem => item.User.UserName)</span> -->
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="nk-tb-col tb-col-mb">
-                                <span class="tb-amount">
-                                    <!-- @* @Html.DisplayFor(modelItem => item.Orders.Sum(x => x.TotalInvoice))
-                                    *@  -->
-                                    <span class="currency">USD</span>
+                                <span class="tb-lead">
+                                    <a href="#">
+                                        #<span th:text="${order.id}"></span>
+                                    </a>
                                 </span>
                             </div>
-                            <div class="nk-tb-col tb-col-md">
-                                <span th:text="${user.phone}"></span>
-                                <!-- <span>@Html.DisplayFor(modelItem => item.Phone)</span> -->
+                            <div class="nk-tb-col tb-col-mb">
+                                <span th:text="${#dates.format(order.orderDate, 'dd/MM/yyyy HH:mm:ss')}"></span>
+                            </div>
+                            <div class="nk-tb-col tb-col-md" th:if="${order.status.name() == 'PENDING'}">
+                                <span class="badge badge-sm badge-dot has-bg bg-success d-none d-sm-inline-flex" th:text="${order.status}">Delivered</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-md" th:if="${order.status.name() == 'PROCESSING'}">
+                                <span class="badge badge-sm badge-dot has-bg bg-warning d-none d-sm-inline-flex"
+                                    th:text="${order.status}">Delivered</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-md" th:if="${order.status.name() == 'SHIPPED'}">
+                            <span class="badge badge-sm badge-dot has-bg bg-warning d-none d-sm-inline-flex"
+                                th:text="${order.status}">Delivered</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-md" th:if="${order.status.name() == 'DELIVERED'}">
+                                <span class="badge badge-sm badge-dot has-bg bg-warning d-none d-sm-inline-flex"
+                                    th:text="${order.status}">Delivered</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-md" th:if="${order.status.name() == 'CANCELLED'}">
+                                <span class="badge badge-sm badge-dot has-bg bg-danger d-none d-sm-inline-flex"
+                                    th:text="${order.status}">Delivered</span>
+                            </div>
+
+                            <div class="nk-tb-col tb-col-lg">
+                                <span th:text="${order.user.fullName}"></span>
                             </div>
                             <div class="nk-tb-col tb-col-lg">
-                                <span th:text="${user.address}"></span>
-                                <!-- <span>@Html.DisplayFor(modelItem => item.Address)</span> -->
-                            </div>
-                            <div class="nk-tb-col tb-col-lg">
-                                <!-- <span th:text="${user}"></span> -->
-                                <!-- <span>@Html.DisplayFor(modelItem => item.Orders.FirstOrDefault(x => x.CustomerId == item.Id).CrateAt)</span> -->
+                                <span class="tb-sub text-primary" ><span th:text="${order.orderItems.size()}"></span> Items</span>
+                                
                             </div>
                             <div class="nk-tb-col tb-col-md">
-                                <!-- @if (item.User.Status == true)
-                                {
-                                <span class="tb-status text-success">Active</span>
-                                }else{
-                                <span class="tb-status text-danger">Not Active</span>
-                                } -->
-                        
+                                <span class="tb-lead">$
+                                <span th:text="${order.totalAmount}"></span></span>
+                                
                             </div>
                             <div class="nk-tb-col nk-tb-col-tools">
                                 <ul class="nk-tb-actions gx-1">
                                     <li class="nk-tb-action-hidden">
-                                        <a th:href="@{/Admin/Users/Edit/{id}(id=${user.id})}" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" aria-label="Edit" data-bs-original-title="Edit">
-                                            <em class="icon ni ni-edit-alt-fill"></em>
-                                        </a>
-                                    </li>
-                                    <li class="nk-tb-action-hidden">
-                                        <a th:href="@{/Admin/Users/Edit/{id}(id=${user.id})}" class="btn btn-trigger btn-icon"
+                                        <a th:href="@{/Admin/Orders/Detail/{id}(id=${order.id})}" class="btn btn-trigger btn-icon"
                                             data-bs-toggle="tooltip" data-bs-placement="top" aria-label="View" data-bs-original-title="View">
                                             <em class="icon ni ni-eye-alt-fill"></em>
                                         </a>
                                     </li>
                                     <li class="nk-tb-action-hidden">
-                                        <a th:href="@{/Admin/Users/Delete/{id}(id=${user.id})}" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip"
+                                        <a th:href="@{/Admin/Orders/Delete/{id}(id=${order.id})}" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip"
                                             data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete">
                                             <em class="icon ni ni-trash-fill"></em>
                                         </a>

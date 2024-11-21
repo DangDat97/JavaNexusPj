@@ -1,9 +1,5 @@
 package nasuxjava.webnexus.controller.client;
 
-import java.time.Instant;
-import java.util.Date;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -14,9 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
-import nasuxjava.webnexus.config.GlobalControllerAdvice;
-import nasuxjava.webnexus.dto.ProductFilterDto;
-import nasuxjava.webnexus.dto.UserDto;
 import nasuxjava.webnexus.entity.Order;
 import nasuxjava.webnexus.entity.Product;
 import nasuxjava.webnexus.entity.User;
@@ -166,9 +159,13 @@ public class HomeController {
 
         Order order = orderService.addCarttoOrder(cart, userAdd);
         if (order != null) {
-            session.setAttribute("message.success",
-                    session.getAttribute("message.success") + "Order created successfully");
+            if (session.getAttribute("message.success") != null) {
+                session.setAttribute("message.success",
+                        session.getAttribute("message.success") + "Order created successfully");
+            }
+            session.setAttribute("message.success", "Order created successfully");
         }
+        cartService.clear();
         return "redirect:/Checkout";
     }
 

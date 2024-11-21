@@ -74,8 +74,16 @@ public class OrderService {
         return order;
     }
 
+    public void saveOrder(Order order) {
+        orderRepository.save(order);
+    }
+
     public List<Order> getOrdersByUser(User user) {
         return orderRepository.findByUserId(user.getId());
+    }
+
+    public List<Order> getAllOrder() {
+        return orderRepository.findAll();
     }
 
     public Order getOrderById(Long orderId) {

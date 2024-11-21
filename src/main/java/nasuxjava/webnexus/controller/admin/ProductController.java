@@ -2,13 +2,10 @@ package nasuxjava.webnexus.controller.admin;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +51,7 @@ public class ProductController {
     private HttpSession session;
 
     @GetMapping
-    public String listProducts(@RequestParam(value = "page", defaultValue = "0") int page,
+    public String listProducts(@RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "size", defaultValue = "10") int size, Model model) {
         Page<Product> productPage = productService.getAllProducts(PageRequest.of(page, size));
         List<Product> products = productPage.getContent();
@@ -109,6 +106,11 @@ public class ProductController {
     public String addproduct(@Valid @ModelAttribute("productDto") ProductDto productDto,
             BindingResult result,
             Model model) {
+        if (result.hasErrors()) {
+
+            return "auth/register";
+        }
+
         try {
             productService.saveProduct(productDto);
         } catch (Exception e) {
@@ -180,6 +182,7 @@ public class ProductController {
             productService.deleteProduct(id);
             return ResponseEntity.ok(true);
         } catch (Exception e) {
+            session.setAttribute("message.error", e.getMessage());
             return ResponseEntity.ok(false);
         }
 

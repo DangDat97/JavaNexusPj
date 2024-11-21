@@ -37,7 +37,7 @@
                             <div class="card card-bordered card-preview">
                                 
                                 <div class="card-inner">
-                                    <span class="preview-title-lg overline-title"><span th:text="${urlForm.substring(0,urlForm.indexOf('/'))}"></span> Category</span>
+                                    <span class="preview-title-lg overline-title"><span th:text="${urlForm.indexOf('/') != -1? urlForm.substring(0,urlForm.indexOf('/')):urlForm}"></span> Category</span>
                                     <form method="post" th:action="@{'/Admin/Category/'+${urlForm}}" th:object="${category}">
                                         <div class="row g-4">
                                             <div class="col-lg-6">
@@ -106,39 +106,6 @@
                             
                             
                             </div>
-                            <!-- <div class="card">
-                                <div class="card-inner">
-                                    <div class="nk-block-between-md g-3">
-                                        <div class="g">
-                                            <ul class="pagination justify-content-center justify-content-md-start">
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">Prev</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">1</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">2</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <span class="page-link">
-                                                        <em class="icon ni ni-more-h"></em>
-                                                    </span>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">6</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">7</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">Next</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
 
                     </div>

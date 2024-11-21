@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import nasuxjava.webnexus.dto.CartDto;
 import nasuxjava.webnexus.entity.Product;
 import nasuxjava.webnexus.model.Cart;
 import nasuxjava.webnexus.service.CartService;

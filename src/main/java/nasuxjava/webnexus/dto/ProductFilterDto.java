@@ -26,6 +26,6 @@ public class ProductFilterDto {
 
     private Boolean status = true;
 
-    private int page = 0;
+    private int page = 1;
     private int size = 10;
 }

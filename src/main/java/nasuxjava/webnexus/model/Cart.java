@@ -22,6 +22,10 @@ public class Cart implements Serializable {
         this.items = items;
     }
 
+    public void clearItems() {
+        items.clear();
+    }
+
     public void addItem(Product product, int quantity) {
         for (CartItem item : items) {
             if (item.getProduct().getId().equals(product.getId())) {

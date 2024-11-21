@@ -24,6 +24,10 @@ public class CartService implements Serializable {
         cart.addItem(product, quantity);
     }
 
+    public void clear() {
+        cart.clearItems();
+    }
+
     public void removeFromCart(Product product) {
         cart.removeItem(product);
     }

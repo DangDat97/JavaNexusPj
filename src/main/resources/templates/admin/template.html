@@ -380,8 +380,13 @@
         });
         
     </script>
-    <script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var urlDelete = /*[[${urlDelete}]]*/ '/Admin/Default/Delete/';
+        var url='/Admin/'+ urlDelete + '/Delete/';
+        console.log("Server response: ", url);
         function showDeleteConfirmation(userId) {
+            
             Swal.fire({
                 title: 'Bạn thực sự muốn xoá ngươi dùng này?',
                 showCancelButton: true,
@@ -391,10 +396,10 @@
                 if (result.isConfirmed) {
                     // console.log("User ID to delete: " + userId);
                     $.ajax({
-                        url: '/Admin/'+/*[[${urlDelete}]]*/+'/Delete/' + userId,
+                        url: url + userId,
                         type: 'DELETE',
                         success: function (response) {
-                            // console.log(response);
+                            
                             if(response){
                             Swal.fire({
                                 icon: 'success',
@@ -427,15 +432,8 @@
                 }
             });
         }
+        /*]]>*/
     </script>
-    <!-- <script> Dropzone.options.userDropzone = { paramName: 'file', // Tên tham số truyền lên server 
-    maxFilesize: 2, // Giới hạn kích thước tệp (MB) 
-    acceptedFiles: 'image/*', // Giới hạn loại tệp được tải lên 
-    dictDefaultMessage: 'Drag and drop an image here or click to upload', 
-    autoProcessQueue: false, init: function() { var myDropzone = this; // Khi form submit, thêm dữ liệu form vào Dropzone 
-        document.querySelector("form").addEventListener("submit", function(e) { e.preventDefault(); e.stopPropagation(); var fullName = document.querySelector('input[name="fullName"]').value; var email = document.querySelector('input[name="email"]').value; myDropzone.on("sending", function(file, xhr, formData) { formData.append("fullName", fullName); formData.append("email", email); }); myDropzone.processQueue(); // Bắt đầu tải lên 
-    }); this.on("success", function(file, response) { console.log("File uploaded successfully"); alert("User uploaded successfully"); }); this.on("error", function(file, response) { console.error("Error uploading file"); alert("Error uploading user"); }); } }; </script> -->
-
     <script th:src="@{/admin/js/bundle.js?ver=3.2.3}"></script>
     <script th:src="@{/admin/js/scripts.js?ver=3.2.3}"></script>
     <script th:src="@{/admin/js/demo-settings.js?ver=3.2.3}"></script>

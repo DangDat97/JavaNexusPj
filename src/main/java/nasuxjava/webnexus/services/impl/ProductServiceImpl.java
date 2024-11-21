@@ -2,12 +2,10 @@ package nasuxjava.webnexus.services.impl;
 
 import nasuxjava.webnexus.dto.ProductDto;
 import nasuxjava.webnexus.dto.ProductFilterDto;
-import nasuxjava.webnexus.dto.UserDto;
 import nasuxjava.webnexus.entity.Distributor;
 import nasuxjava.webnexus.entity.Product;
 import nasuxjava.webnexus.entity.ProductImage;
 import nasuxjava.webnexus.entity.Category;
-import nasuxjava.webnexus.model.Cart;
 import nasuxjava.webnexus.repository.ProductRepository;
 import nasuxjava.webnexus.repository.specification.ProductSpecification;
 import nasuxjava.webnexus.services.CategoryService;
@@ -24,7 +22,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
