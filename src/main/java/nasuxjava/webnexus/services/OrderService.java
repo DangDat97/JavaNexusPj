@@ -78,6 +78,10 @@ public class OrderService {
         orderRepository.save(order);
     }
 
+    public void deleteOrder(Order order) {
+        orderRepository.delete(order);
+    }
+
     public List<Order> getOrdersByUser(User user) {
         return orderRepository.findByUserId(user.getId());
     }

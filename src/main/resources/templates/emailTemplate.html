@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Thiệp Chúc Mừng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .card {
+            box-shadow: 0 1px 3px 0 rgba(54, 74, 99, .05);
+        }
+        @media (min-width: 576px) {
+            .card-inner {
+                padding: 1.5rem;
+            }
+        }
+        .email-wraper {
+    background: #f5f6fa;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #8094ae;
+    width: 100%;
+}
+
+table {
+    caption-side: bottom;
+    border-collapse: collapse;
+}
+.py-5 {
+    padding-top: 2.75rem !important;
+    padding-bottom: 2.75rem !important;
+}
+.email-header, .email-footer {
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto;
+}
+.email-body {
+    width: 96%;
+    max-width: 620px;
+    margin: 0 auto;
+    background: #ffffff;
+}
+.text-center {
+    text-align: center !important;
+}
+.pb-4 {
+    padding-bottom: 1.5rem !important;
+}
+@media (min-width: 576px) {
+    .p-sm-5 {
+        padding: 2.75rem !important;
+    }
+}
+.mt-4 {
+    margin-top: 1.5rem !important;
+}
+.email-logo {
+    height: 40px;
+}
+ol, ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.email-social li {
+    display: inline-block;
+    padding: 4px;
+}
+.email-social li a {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: #ffffff;
+}
+.email-wraper a {
+    color: #854fff;
+    word-break: break-all;
+}
+a {
+    transition: color .4s, background-color .4s, border .4s, box-shadow .4s;
+}
+.email-social li a img {
+    width: 30px;
+}
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="card-inner">
+            <table class="email-wraper">
+                <tbody>
+                    <tr>
+                        <td class="py-5">
+                            <table class="email-header">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center pb-4"><a href="#"><img class="email-logo"
+                                                    src="https://i.imgur.com/8Ln0xHA.png" alt="logo"></a>
+                                            <p class="email-title">Conceptual Base Modern Dashboard Theme</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="email-body">
+                                <tbody>
+                                    <tr>
+                                        <td class="p-3 p-sm-5">
+                                            <p><strong>Hello <span th:text="${name}"></span></strong>,</p>
+                                            <p>We have created an account for you from the email you entered in your order.
+                                            
+                                            Your account will be the Email you entered
+                                            
+                                            And the Password is :</p><span th:text="${messageContent}"></span>
+                                            <p>Thank you for ordering and supporting our company. </p>
+                                            <p class="mt-4">---- <br> Regards<br>Dang Van Dat</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="email-footer">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center pt-4">
+                                            <p class="email-copyright-text">Copyright © 2024 HolaWeb. All rights reserved.
+                                                <br> Template Made By <a
+                                                    href="https://holaweb.net/">HolaWeb</a>.</p>
+                                            <ul class="email-social">
+                                                <li><a href="#"><img src="https://i.imgur.com/s9o59xd.png" alt=""></a>
+                                                </li>
+                                                <li><a href="#"><img src="https://i.imgur.com/zlwPVe5.png" alt=""></a>
+                                                </li>
+                                                <li><a href="#"><img src="https://i.imgur.com/XcHL3g3.png" alt=""></a>
+                                                </li>
+                                                <li><a href="#"><img src="https://i.imgur.com/PTPu2HL.png" alt=""></a></li>
+                                            </ul>
+                                            <p class="fs-12px pt-4">This email was sent to you as a registered member of <a
+                                                    href="https://holaweb.net/">holaweb.net</a>. To update your emails
+                                                preferences <a href="#">click here</a>.</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

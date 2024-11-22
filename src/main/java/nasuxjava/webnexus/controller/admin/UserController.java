@@ -165,6 +165,7 @@ public class UserController {
             userService.deleteUser(id);
             return ResponseEntity.ok(true);
         } catch (Exception e) {
+            session.setAttribute("message.error", "Users have placed orders you cannot delete");
             return ResponseEntity.ok(false);
         }
 

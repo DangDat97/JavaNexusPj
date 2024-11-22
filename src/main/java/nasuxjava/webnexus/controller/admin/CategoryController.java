@@ -44,14 +44,6 @@ public class CategoryController {
         return LAYOUT;
     }
 
-    // @GetMapping({ "/Add" })
-    // public String showAddCategoryForm(Model model) {
-    // model.addAttribute("title", "Add New Category");
-    // model.addAttribute("Category", new Category());
-    // model.addAttribute("content", PATH + "/add.html");
-    // return LAYOUT;
-    // }
-
     @PostMapping({ "/Add" })
     public String categoryAdd(@Valid @ModelAttribute("category") Category category,
             BindingResult result,
@@ -87,6 +79,7 @@ public class CategoryController {
         model.addAttribute("category", category);
         model.addAttribute("categories", categories);
         model.addAttribute("content", PATH + "/list.html");
+        session.setAttribute("message.success", "Update category successfully");
         return LAYOUT;
     }
 

@@ -264,7 +264,7 @@
                                         srcset="/demo2/images/logo-dark2x.png 2x" alt="logo-dark"></a></div>
                             <div class="nk-header-search ms-3 ms-xl-0"><em class="icon ni ni-search"></em><input type="text"
                                     class="form-control border-transparent form-focus-none" placeholder="Search anything"></div>
-                            <div class="nk-header-tools">
+                            <div class="nk-header-tools" th:if="${infoUserLogin}">
                                 <ul class="nk-quick-nav">
                                     <li class="dropdown user-dropdown"><a href="#" class="dropdown-toggle me-n1"
                                             data-bs-toggle="dropdown">
@@ -384,14 +384,16 @@
         /*<![CDATA[*/
         var urlDelete = /*[[${urlDelete}]]*/ '/Admin/Default/Delete/';
         var url='/Admin/'+ urlDelete + '/Delete/';
+        function removeTrailingS(str) { if (str.endsWith('s')) { return str.slice(0, -1); } return str; }
+        var object = removeTrailingS(urlDelete);;
         console.log("Server response: ", url);
         function showDeleteConfirmation(userId) {
             
             Swal.fire({
-                title: 'Bạn thực sự muốn xoá ngươi dùng này?',
+                title: 'Do you really want to delete this '+ object +' ?',
                 showCancelButton: true,
-                confirmButtonText: 'Đồng ý',
-                cancelButtonText: 'Hủy'
+                confirmButtonText: 'Agree',
+                cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
                     // console.log("User ID to delete: " + userId);
@@ -403,8 +405,8 @@
                             if(response){
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Đã xoá thành công!',
-                                text: 'Người dùng đã được xoá thành công.',
+                                title: 'Deleted successfully!',
+                                text: object + ' has been deleted successfully.',
                                 confirmButtonText: 'OK'
                             }).then(() => {
                                 // Remove the user from the page
@@ -413,8 +415,8 @@
                             } else { 
                                 Swal.fire({ 
                                     icon: 'error', 
-                                    title: 'Lỗi!', 
-                                    text: 'Đã xảy ra lỗi khi xoá người dùng.', 
+                                    title: 'Error!', 
+                                    text: 'An error occurred while deleting the '+ object +'.', 
                                     confirmButtonText: 'OK' 
                                 }); 
                             }
@@ -423,8 +425,8 @@
                             // console.log(response);
                             Swal.fire({
                                 icon: 'error',
-                                title: 'Lỗi!',
-                                text: 'Đã xảy ra lỗi khi xoá người dùng.',
+                                title: 'Error!',
+                                text: 'An error occurred while deleting the' + object + '.',
                                 confirmButtonText: 'OK'
                             });
                         }

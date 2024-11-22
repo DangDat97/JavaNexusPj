@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpSession;
 import nasuxjava.webnexus.entity.Order;
 import nasuxjava.webnexus.entity.Product;
 import nasuxjava.webnexus.entity.User;
 import nasuxjava.webnexus.model.Cart;
 import nasuxjava.webnexus.service.CartService;
+import nasuxjava.webnexus.service.EmailService;
 import nasuxjava.webnexus.service.RandomService;
 import nasuxjava.webnexus.services.OrderService;
 import nasuxjava.webnexus.services.ProductService;
@@ -35,16 +37,18 @@ public class HomeController {
     private final UserService userService;
     private final OrderService orderService;
     private final HttpSession session;
+    private final EmailService emailService;
 
     @Autowired
     public HomeController(ProductService productService, CartService cartService, RandomService randomService,
-            UserService userService, OrderService orderService, HttpSession session) {
+            UserService userService, OrderService orderService, HttpSession session, EmailService emailService) {
         this.productService = productService;
         this.cartService = cartService;
         this.randomService = randomService;
         this.userService = userService;
         this.orderService = orderService;
         this.session = session;
+        this.emailService = emailService;
     }
 
     @GetMapping("/")
@@ -153,6 +157,16 @@ public class HomeController {
         } else {
             String password = randomService.getRandomString(10);
             userAdd = userService.saveUserOrder(user, password);
+            emailService.sendEmail(user.getEmail(), password, password);
+            try {
+                emailService.sendHtmlEmail(user.getEmail(),
+                        "Order successful, Account information created to check order", user.getFullName(), password);
+            } catch (MessagingException e) {
+                session.setAttribute("message.error",
+                        e.getMessage());
+                return "redirect:/Checkout";
+            }
+
             session.setAttribute("message.success",
                     "Successfully created an account with email. Check your email to receive login information and order information.");
         }
@@ -160,13 +174,28 @@ public class HomeController {
         Order order = orderService.addCarttoOrder(cart, userAdd);
         if (order != null) {
             if (session.getAttribute("message.success") != null) {
-                session.setAttribute("message.success",
-                        session.getAttribute("message.success") + "Order created successfully");
+                String message = (String) session.getAttribute("message.success");
+                session.setAttribute("message.success", message + "Order created successfully");
             }
             session.setAttribute("message.success", "Order created successfully");
         }
         cartService.clear();
         return "redirect:/Checkout";
+    }
+
+    @GetMapping("/SendEmail")
+    public String sendEmail() {
+        String recipientEmail = "sale.taman.07@gmail.com";
+        String subject = "Thiệp HTML";
+        String name = "Nguyễn Văn A";
+        String messageContent = "Chúc bạn một ngày tràn đầy niềm vui, hạnh phúc và những điều tuyệt vời nhất!";
+        try {
+            emailService.sendHtmlEmail(recipientEmail, subject, name, messageContent);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            return "error";
+        }
+        return "emailSent";
     }
 
 }

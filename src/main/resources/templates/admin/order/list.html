@@ -73,7 +73,7 @@
                                 <span class="sub-text">Act</span>
                             </div>
                         </div>
-                        <div class="nk-tb-item" th:each="order : ${orders}">
+                        <div class="nk-tb-item" th:each="order : ${orders}" th:id="'user-row-'+${order.id}">
                             <div class="nk-tb-col nk-tb-col-check">
                                 <div class="custom-control custom-control-sm custom-checkbox notext">
                                     <input type="checkbox" class="custom-control-input" id="${order.id}">
@@ -91,7 +91,7 @@
                                 <span th:text="${#dates.format(order.orderDate, 'dd/MM/yyyy HH:mm:ss')}"></span>
                             </div>
                             <div class="nk-tb-col tb-col-md" th:if="${order.status.name() == 'PENDING'}">
-                                <span class="badge badge-sm badge-dot has-bg bg-success d-none d-sm-inline-flex" th:text="${order.status}">Delivered</span>
+                                <span class="badge badge-sm badge-dot has-bg bg-warning d-none d-sm-inline-flex" th:text="${order.status}">Delivered</span>
                             </div>
                             <div class="nk-tb-col tb-col-md" th:if="${order.status.name() == 'PROCESSING'}">
                                 <span class="badge badge-sm badge-dot has-bg bg-warning d-none d-sm-inline-flex"
@@ -102,7 +102,7 @@
                                 th:text="${order.status}">Delivered</span>
                             </div>
                             <div class="nk-tb-col tb-col-md" th:if="${order.status.name() == 'DELIVERED'}">
-                                <span class="badge badge-sm badge-dot has-bg bg-warning d-none d-sm-inline-flex"
+                                <span class="badge badge-sm badge-dot has-bg bg-success d-none d-sm-inline-flex"
                                     th:text="${order.status}">Delivered</span>
                             </div>
                             <div class="nk-tb-col tb-col-md" th:if="${order.status.name() == 'CANCELLED'}">
@@ -131,10 +131,26 @@
                                         </a>
                                     </li>
                                     <li class="nk-tb-action-hidden">
-                                        <a th:href="@{/Admin/Orders/Delete/{id}(id=${order.id})}" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete">
+                                        <a href="javascript:void(0);" th:attr="onclick=|showDeleteConfirmation(${order.id})|"
+                                            class="btn btn-trigger btn-icon eg-swal-error" data-bs-original-title="View">
                                             <em class="icon ni ni-trash-fill"></em>
                                         </a>
+                                    </li>
+                                    <li>
+                                        <div class="drodown me-n1"><a href="#" class="dropdown-toggle btn btn-icon btn-trigger "
+                                                data-bs-toggle="dropdown" aria-expanded="true"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-end "
+                                                style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(3px, 38px);"
+                                                data-popper-placement="bottom-end">
+                                                <ul class="link-list-opt no-bdr">
+                                                    <li><a th:href="@{/Admin/Orders/Detail/{id}(id=${order.id})}"><em class="icon ni ni-eye"></em><span>Order Details</span></a></li>
+                                                    <li><a th:href="@{/Admin/Orders/StatusToProcessing/{id}(id=${order.id})}"><em class="icon ni ni-truck"></em><span>Mark as Processing</span></a></li>
+                                                    <li><a th:href="@{/Admin/Orders/StatusToShipped/{id}(id=${order.id})}"><em class="icon ni ni-money"></em><span>Mark as Shipped</span></a></li>
+                                                    <li><a th:href="@{/Admin/Orders/StatusToDelivered/{id}(id=${order.id})}"><em class="icon ni ni-report-profit"></em><span>Mark as Delivered</span></a></li>
+                                                    <li><a href="javascript:void(0);" th:attr="onclick=|showDeleteConfirmation(${order.id})|"><em class="icon ni ni-trash"></em><span>Remove Order</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
